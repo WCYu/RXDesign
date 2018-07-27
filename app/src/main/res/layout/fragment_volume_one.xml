@@ -1,0 +1,847 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.rxjy.rxdesign.fragment.volumeroom.VolumeOneFragment">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/ll_bottom"
+            android:background="@color/colorBG">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="90px">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.rxjy.rxdesign.custom.TextGridview
+                            android:id="@+id/tgv_houseface"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+
+                        </com.rxjy.rxdesign.custom.TextGridview>
+
+                        <com.rxjy.rxdesign.custom.TextGridview
+                            android:id="@+id/tgv_wallmaterial"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+
+                        </com.rxjy.rxdesign.custom.TextGridview>
+
+                        <com.rxjy.rxdesign.custom.TextGridview
+                            android:id="@+id/tgv_topmaterial"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+
+                        </com.rxjy.rxdesign.custom.TextGridview>
+
+                        <com.rxjy.rxdesign.custom.TextGridview
+                            android:id="@+id/tgv_groundmaterial"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+
+                        </com.rxjy.rxdesign.custom.TextGridview>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20px"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="空调设备"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_new_kongtiaoshebei"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="个"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1px"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="强电箱"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_new_qiangdianxiang"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="个"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1px"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="弱电箱"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_new_ruodianxiang"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="个"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1px"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="上水点"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_new_shangshuidian"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="个"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1px"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="下水点"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_xiashuidian"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="个"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1px"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="下水点尺寸"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_new_xiashuidianchicun"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="mm"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1px"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="主梁下高"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_new_zhuliangxiagao"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="mm"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1px"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="次梁下高"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_new_ciliangxiagao"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="mm"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1px"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="原顶面高"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_new_yuandingmiangao"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="mm"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1px"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="喷淋最低点"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_new_penlinzuididian"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="mm"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1px"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="风口最低点"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_new_fengkouzuididian"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="mm"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1px"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="幕墙框架间距"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_new_muqiangkuangjiajianju"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="mm"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <com.rxjy.rxdesign.custom.TextGridview
+                            android:id="@+id/tgv_windowtype"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+
+                        </com.rxjy.rxdesign.custom.TextGridview>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20px"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="窗台高"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_measure_windowsill_height"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="mm"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1px"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="窗户高"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_measure_windows_height"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="mm"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1px"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="窗户宽"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_measure_windowsill_width"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="mm"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <com.rxjy.rxdesign.custom.TextGridview
+                            android:id="@+id/tgv_occupypublic"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+
+                        </com.rxjy.rxdesign.custom.TextGridview>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20px"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/CargoDoorHight"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_measure_ca_cargo_door_hight"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="mm"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1px"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/CargoDoorWide"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_measure_ca_cargo_door_wide"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="mm"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <com.rxjy.rxdesign.custom.TextGridview
+                            android:id="@+id/tgv_groundsmooth"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+
+                        </com.rxjy.rxdesign.custom.TextGridview>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20px"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="20px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="地面高差"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="28px" />
+
+                                <EditText
+                                    android:id="@+id/et_measure_ca_grond_elevation"
+                                    android:layout_width="0px"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="right"
+
+                                    android:hint="请输入"
+                                    android:inputType="numberDecimal"
+                                    android:maxEms="11"
+                                    android:textColor="@color/cor595757"
+                                    android:textColorHint="@color/line"
+                                    android:textSize="28px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="mm"
+                                    android:textColor="@color/cor595757"
+                                    android:textSize="26px" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <com.rxjy.rxdesign.custom.TextGridview
+                            android:id="@+id/tgv_waterpath"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+
+                        </com.rxjy.rxdesign.custom.TextGridview>
+
+                        <com.rxjy.rxdesign.custom.TextGridview
+                            android:id="@+id/tgv_originalground"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+
+                        </com.rxjy.rxdesign.custom.TextGridview>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

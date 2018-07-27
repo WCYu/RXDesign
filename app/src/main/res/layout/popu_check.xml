@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_topmore"
+        android:layout_width="200px"
+        android:layout_height="280px"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/iv_biaoshu"
+        android:layout_marginRight="20px"
+        android:background="@mipmap/tanchubeijing"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_moreperson"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="5px"
+            android:text="回头客"
+            android:textColor="@color/colorWhite"
+            android:textSize="28px" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1.5px"
+            android:layout_marginLeft="5px"
+            android:layout_marginRight="5px"
+            android:background="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/tv_huitokei"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="客户App"
+            android:textColor="@color/colorWhite"
+            android:textSize="28px" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1.5px"
+            android:layout_marginLeft="5px"
+            android:layout_marginRight="5px"
+            android:background="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/tv_ercode"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="扫一扫"
+            android:textColor="@color/colorWhite"
+            android:textSize="28px" />
+
+    </LinearLayout>
+</RelativeLayout>
