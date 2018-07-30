@@ -70,7 +70,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         AutoUtils.auto(view);
         setContentView(view);
         //禁止横屏
-//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //禁止键盘挤压布局
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         //绑定插件

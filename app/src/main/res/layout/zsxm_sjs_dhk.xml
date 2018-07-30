@@ -34,18 +34,14 @@
                 android:layout_gravity="end"
                 android:layout_margin="20px"
                 android:layout_weight="1"
-                android:background="@drawable/ic_chatbwrite"
-                android:padding="20px">
+                android:background="@drawable/back_shi_bai"
+                android:padding="40px">
 
                 <TextView
                     android:id="@+id/sjs_item_tv_zsxm_res"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="20px"
-                    android:layout_marginLeft="20px"
-                    android:layout_marginRight="40px"
-                    android:layout_marginTop="20px"
                     android:text="A.方案洽谈阶段nB.昨天和客户当面碰了方案，目前由于老总出差，负责人对我们的平面布局进行了点评，有局部修改。但暂时无法给出最终的修改意见，但对他装修报价比较在意，总价不高。nC.平面方案以按负责人的意思调整了一下，目前正在做报价，预计下班前报价也能出来。今天晚上会给负责人去个电话把报价的总价口述给他，另外和他谈一下主材代购费。估价下个礼拜一能和他们老总碰面沟通。"
                     android:textSize="28px" />
             </LinearLayout>
@@ -54,7 +50,6 @@
                 android:id="@+id/tv_type_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20px"
                 android:layout_marginRight="20px"
                 android:background="@drawable/circle_red"
                 android:gravity="center"

@@ -115,9 +115,9 @@ public class VolumeFourFragment extends BaseFragment {
         Log.e("单项数据的钱", itemmoney + "");
         activity = (DesDaiMeasureActivity) getActivity();
         initAddData();
-        etNewWuyeshigongyaoqiu.addTextChangedListener(new MyEditListener(etNewWuyeshigongyaoqiu));
-        etNewPropertyperson.addTextChangedListener(new MyEditListener(etNewPropertyperson));
-        etNewTwofixperson.addTextChangedListener(new MyEditListener(etNewTwofixperson));
+//        etNewWuyeshigongyaoqiu.addTextChangedListener(new MyEditListener(etNewWuyeshigongyaoqiu));
+//        etNewPropertyperson.addTextChangedListener(new MyEditListener(etNewPropertyperson));
+//        etNewTwofixperson.addTextChangedListener(new MyEditListener(etNewTwofixperson));
     }
 
     /**
@@ -368,9 +368,9 @@ public class VolumeFourFragment extends BaseFragment {
             }
         });
 
-//        mPresenter.GetNewFour(clientInfo.getCi_rwdid());
-
-        ShowView(lhousedata);
+        if (lhousedata != null) {
+            ShowView(lhousedata);
+        }
     }
 
     private void ShowView(DesDaiMeasureABean.BodyBean info) {

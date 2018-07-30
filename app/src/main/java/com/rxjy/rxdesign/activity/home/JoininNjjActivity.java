@@ -112,7 +112,7 @@ public class JoininNjjActivity extends BaseActivity {
     private HomeFragment homeFragment;
     private MoreFragment moreFragment;
     private FindFragment findFragment;
-    private MainFragment mineFragment;
+    public MainFragment mineFragment;
     private NewPeopleHomeFragment newPeopleHomeFragment;
 
     private AlertDialog alertDialog;

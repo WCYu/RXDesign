@@ -93,8 +93,8 @@ public class VolumeSixFragment extends BaseFragment {
     public void initData() {
         activity = (DesDaiMeasureActivity) getActivity();
         initAddData();
-        etNewMianji.addTextChangedListener(new MyEditListener(etNewMianji));
-        etNewBuildmianji.addTextChangedListener(new MyEditListener(etNewBuildmianji));
+//        etNewMianji.addTextChangedListener(new MyEditListener(etNewMianji));
+//        etNewBuildmianji.addTextChangedListener(new MyEditListener(etNewBuildmianji));
     }
 
     /**
@@ -194,7 +194,9 @@ public class VolumeSixFragment extends BaseFragment {
         });
 
 //        mPresenter.GetNewSix(clientInfo.getCi_rwdid());
-        ShowView(lhousedata);
+        if (lhousedata != null) {
+            ShowView(lhousedata);
+        }
     }
 
     private void ShowView(DesDaiMeasureABean.BodyBean info) {

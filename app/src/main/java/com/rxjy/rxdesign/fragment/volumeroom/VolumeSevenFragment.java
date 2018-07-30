@@ -72,7 +72,9 @@ public class VolumeSevenFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        ShowView(lhousedata);
+       if(lhousedata!=null){
+           ShowView(lhousedata);
+       }
     }
 
     private void ShowView(DesDaiMeasureABean.BodyBean info) {

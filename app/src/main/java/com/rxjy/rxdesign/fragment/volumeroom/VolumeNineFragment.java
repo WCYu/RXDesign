@@ -63,7 +63,11 @@ public class VolumeNineFragment extends BaseFragment {
 
     public void setLHouseData(DesDaiMeasureABean.BodyBean bean) {
         lhousedata = bean;
-
+        if (lhousedata != null) {
+            ShowView(lhousedata);
+        } else {
+            Log.e("tag_NineFragmenr", "lhousedata为空");
+        }
     }
 
     /**
@@ -89,8 +93,8 @@ public class VolumeNineFragment extends BaseFragment {
     public void initData() {
         activity = (DesDaiMeasureActivity) getActivity();
         initAddData();
-        etNewJingyingfanwei.addTextChangedListener(new MyEditListener(etNewJingyingfanwei));
-        etNewQiyewenhua.addTextChangedListener(new MyEditListener(etNewQiyewenhua));
+//        etNewJingyingfanwei.addTextChangedListener(new MyEditListener(etNewJingyingfanwei));
+//        etNewQiyewenhua.addTextChangedListener(new MyEditListener(etNewQiyewenhua));
 //        rgNewQiyeguimo.setOnCheckedChangeListener(this);
 //        rgNewQiyexingzhi.setOnCheckedChangeListener(this);
 //        rgNewShouciruzhu.setOnCheckedChangeListener(this);
@@ -100,15 +104,13 @@ public class VolumeNineFragment extends BaseFragment {
             public void onClick(View v) {
                 DatePicker Picker = new DatePicker(getActivity());
                 Picker.setRange(2017, 2100);//年份范围
-                Picker.setOnDatePickListener(new DatePicker.OnYearMonthDayPickListener()
-                {
+                Picker.setOnDatePickListener(new DatePicker.OnYearMonthDayPickListener() {
                     @Override
-                    public void onDatePicked(String year, String month, String day)
-                    {
+                    public void onDatePicked(String year, String month, String day) {
                         chenglishijian = year + "-" + month + "-" + day;
                         tvNewChenglishijian.setText(chenglishijian);
-                        if(Chenglishijianm!=1){
-                            Chenglishijianm=1;
+                        if (Chenglishijianm != 1) {
+                            Chenglishijianm = 1;
                             addMoney();
                         }
                         activity.savedatabean.setCa_EstablishmentTime(chenglishijian);
@@ -119,28 +121,39 @@ public class VolumeNineFragment extends BaseFragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (lhousedata != null) {
+            ShowView(lhousedata);
+        } else {
+            Log.e("tag_NineFragmenr", "lhousedata为空");
+        }
+    }
+
     /**
      * 展示添加的源数据
      */
     private List<String> enterpriselist;
     private List<String> enterprisesizelist;
     private List<String> firstinlist;
-    private void initAddData(){
-        enterpriselist=new ArrayList<>();
+
+    private void initAddData() {
+        enterpriselist = new ArrayList<>();
         enterpriselist.add("国企");
         enterpriselist.add("私企");
         enterpriselist.add("外企");
-        enterpriselist.add("央企");
-        enterpriselist.add("合资");
-        enterpriselist.add("其他");
+//        enterpriselist.add("央企");
+//        enterpriselist.add("合资");
+//        enterpriselist.add("其他");
 
-        enterprisesizelist=new ArrayList<>();
+        enterprisesizelist = new ArrayList<>();
         enterprisesizelist.add("30人以下");
         enterprisesizelist.add("30-50人");
         enterprisesizelist.add("50-100人");
         enterprisesizelist.add("100人以上");
 
-        firstinlist=new ArrayList<>();
+        firstinlist = new ArrayList<>();
         firstinlist.add("是");
         firstinlist.add("否");
 
@@ -150,7 +163,8 @@ public class VolumeNineFragment extends BaseFragment {
     /**
      * 展示添加的源数据
      */
-    int enterprisem,enterprisesizem,firstinm;
+    int enterprisem, enterprisesizem, firstinm;
+
     private void initShow() {
         tgvEnterprise.setTvType("企业性质");
         tgvEnterprise.setGvLines(4);
@@ -158,8 +172,8 @@ public class VolumeNineFragment extends BaseFragment {
         tgvEnterprise.tochoose(new TextGridview.Choose() {
             @Override
             public void tochoose(int position) {//改变钱数
-                if(enterprisem!=1){
-                    enterprisem=1;
+                if (enterprisem != 1) {
+                    enterprisem = 1;
                     addMoney();
                 }
                 activity.savedatabean.setCa_EnterpriseNature(enterpriselist.get(position));
@@ -172,8 +186,8 @@ public class VolumeNineFragment extends BaseFragment {
         tgvEnterprisesize.tochoose(new TextGridview.Choose() {
             @Override
             public void tochoose(int position) {//改变钱数
-                if(enterprisesizem!=1){
-                    enterprisesizem=1;
+                if (enterprisesizem != 1) {
+                    enterprisesizem = 1;
                     addMoney();
                 }
                 activity.savedatabean.setCa_EnterprisesScale(enterprisesizelist.get(position));
@@ -186,60 +200,58 @@ public class VolumeNineFragment extends BaseFragment {
         tgvFirstin.tochoose(new TextGridview.Choose() {
             @Override
             public void tochoose(int position) {//改变钱数
-                if(firstinm!=1){
-                    firstinm=1;
+                if (firstinm != 1) {
+                    firstinm = 1;
                     addMoney();
                 }
                 activity.savedatabean.setCa_ForeignEnterprises(firstinlist.get(position));
             }
         });
-        ShowView(lhousedata);
-
     }
 
-    private void ShowView(DesDaiMeasureABean.BodyBean info){
+    private void ShowView(DesDaiMeasureABean.BodyBean info) {
         moneynum = activity.moneynum;
 
-        if(!StringUtils.isEmpty(info.getCa_EstablishmentTime())){
-            Chenglishijianm=1;
-            if (!info.getCa_EstablishmentTime().trim().isEmpty()){
+        if (!StringUtils.isEmpty(info.getCa_EstablishmentTime())) {
+            Chenglishijianm = 1;
+            if (!info.getCa_EstablishmentTime().trim().isEmpty()) {
                 tvNewChenglishijian.setText(info.getCa_EstablishmentTime());
             }
         }
-        if(!StringUtils.isEmpty(info.getCa_BusinessScope())){
-            jingyingfanweim=1;
+        if (!StringUtils.isEmpty(info.getCa_BusinessScope())) {
+            jingyingfanweim = 1;
             etNewJingyingfanwei.setText(info.getCa_BusinessScope());
         }
-        if(!StringUtils.isEmpty(info.getCa_BusinessScope())){
-            qiyewenhuam=1;
+        if (!StringUtils.isEmpty(info.getCa_BusinessScope())) {
+            qiyewenhuam = 1;
             etNewQiyewenhua.setText(info.getCa_CorporateCulture());
         }
 
 
-        if(!StringUtils.isEmpty(info.getCa_EnterpriseNature())){
-            enterprisem=1;
+        if (!StringUtils.isEmpty(info.getCa_EnterpriseNature())) {
+            enterprisem = 1;
             for (int i = 0; i < enterpriselist.size(); i++) {
-                if(enterpriselist.get(i).equals(info.getCa_EnterpriseNature())){
+                if (enterpriselist.get(i).equals(info.getCa_EnterpriseNature())) {
                     tgvEnterprise.setContents(info.getCa_EnterpriseNature(), i);
                     break;
                 }
             }
         }
 
-        if(!StringUtils.isEmpty(info.getCa_EnterprisesScale())){
-            enterprisesizem=1;
+        if (!StringUtils.isEmpty(info.getCa_EnterprisesScale())) {
+            enterprisesizem = 1;
             for (int i = 0; i < enterprisesizelist.size(); i++) {
-                if(enterprisesizelist.get(i).equals(info.getCa_EnterprisesScale())){
+                if (enterprisesizelist.get(i).equals(info.getCa_EnterprisesScale())) {
                     tgvEnterprisesize.setContents(info.getCa_EnterprisesScale(), i);
                     break;
                 }
             }
         }
 
-        if(!StringUtils.isEmpty(info.getCa_ForeignEnterprises())){
-            firstinm=1;
+        if (!StringUtils.isEmpty(info.getCa_ForeignEnterprises())) {
+            firstinm = 1;
             for (int i = 0; i < firstinlist.size(); i++) {
-                if(firstinlist.get(i).equals(info.getCa_ForeignEnterprises())){
+                if (firstinlist.get(i).equals(info.getCa_ForeignEnterprises())) {
                     tgvFirstin.setContents(info.getCa_ForeignEnterprises(), i);
                     break;
                 }
@@ -263,7 +275,8 @@ public class VolumeNineFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
-    private String fanwei="",companywenhua="";
+    private String fanwei = "", companywenhua = "";
+
     private class MyEditListener implements TextWatcher {
 
         private EditText edittext;
@@ -279,20 +292,20 @@ public class VolumeNineFragment extends BaseFragment {
             int lengths = arg0.length();
             switch (edittext.getId()) {
                 case R.id.et_new_jingyingfanwei:
-                    editchanges(lengths,0);
-                    if(lengths>0){
-                        fanwei=edittext.getText().toString().trim();
-                    }else{
-                        fanwei="";
+                    editchanges(lengths, 0);
+                    if (lengths > 0) {
+                        fanwei = edittext.getText().toString().trim();
+                    } else {
+                        fanwei = "";
                     }
                     activity.savedatabean.setCa_BusinessScope(fanwei);
                     break;
                 case R.id.et_new_qiyewenhua:
-                    editchanges(lengths,1);
-                    if(lengths>0){
-                        companywenhua=edittext.getText().toString().trim();
-                    }else{
-                        companywenhua="";
+                    editchanges(lengths, 1);
+                    if (lengths > 0) {
+                        companywenhua = edittext.getText().toString().trim();
+                    } else {
+                        companywenhua = "";
                     }
                     activity.savedatabean.setCa_CorporateCulture(companywenhua);
                     break;
@@ -312,35 +325,35 @@ public class VolumeNineFragment extends BaseFragment {
         }
     }
 
-    int jingyingfanweim,qiyewenhuam;
+    int jingyingfanweim, qiyewenhuam;
 
     /**
      * 输入框改变后金钱的变化
      */
-    private void editchanges(int length,int type){
-        if(length>0){
-            switch (type){
+    private void editchanges(int length, int type) {
+        if (length > 0) {
+            switch (type) {
                 case 0:
-                    if(jingyingfanweim!=1){
-                        jingyingfanweim=1;
+                    if (jingyingfanweim != 1) {
+                        jingyingfanweim = 1;
                         addMoney();
                     }
                     break;
                 case 1:
-                    if(qiyewenhuam!=1){
-                        qiyewenhuam=1;
+                    if (qiyewenhuam != 1) {
+                        qiyewenhuam = 1;
                         addMoney();
                     }
                     break;
             }
-        }else{
-            switch (type){
+        } else {
+            switch (type) {
                 case 0:
-                    jingyingfanweim=0;
+                    jingyingfanweim = 0;
                     noaddMoney();
                     break;
                 case 1:
-                    qiyewenhuam=0;
+                    qiyewenhuam = 0;
                     noaddMoney();
                     break;
             }
@@ -352,14 +365,15 @@ public class VolumeNineFragment extends BaseFragment {
     BigDecimal bigDecimal;
     double showmoney;
     int moneynum;//当前金额对应的个数
+
     private void addMoney() {
         moneynum = moneynum + 1;
         Log.e("个数；", moneynum + "");
         Log.e("金额是+；", lhousedata.getJDMoney() + "");
         allmoney = Double.parseDouble(lhousedata.getJDMoney());
-        showmoney=allmoney / LF_NUM * moneynum;
-        bigDecimal=new BigDecimal(showmoney);
-        showmoney=bigDecimal.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+        showmoney = allmoney / LF_NUM * moneynum;
+        bigDecimal = new BigDecimal(showmoney);
+        showmoney = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
         activity.money = showmoney;
         Log.e("金额；", activity.money + "");
         activity.setMoney(activity.money);
@@ -370,9 +384,9 @@ public class VolumeNineFragment extends BaseFragment {
         moneynum = moneynum - 1;
         Log.e("个数；", moneynum + "");
         allmoney = Double.parseDouble(lhousedata.getJDMoney());
-        showmoney=allmoney / LF_NUM * moneynum;
-        bigDecimal=new BigDecimal(showmoney);
-        showmoney=bigDecimal.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+        showmoney = allmoney / LF_NUM * moneynum;
+        bigDecimal = new BigDecimal(showmoney);
+        showmoney = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
         activity.money = showmoney;
         Log.e("金额；", activity.money + "");
         activity.setMoney(activity.money);

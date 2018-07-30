@@ -120,11 +120,9 @@ public class VolumeFiveFragment extends BaseFragment {
     public void initData() {
         getProjecttype();
         activity = (DesDaiMeasureActivity) getActivity();
-
         initAddData();
-
-        etNewXiangmumingcheng.addTextChangedListener(new MyEditListener(etNewXiangmumingcheng));
-        etNewBangongdidian.addTextChangedListener(new MyEditListener(etNewBangongdidian));
+//        etNewXiangmumingcheng.addTextChangedListener(new MyEditListener(etNewXiangmumingcheng));
+//        etNewBangongdidian.addTextChangedListener(new MyEditListener(etNewBangongdidian));
     }
 
     /**
@@ -170,7 +168,9 @@ public class VolumeFiveFragment extends BaseFragment {
         });
 
 //        mPresenter.GetNewFive(clientInfo.getCi_rwdid());
-        ShowView(lhousedata);
+        if (lhousedata != null) {
+            ShowView(lhousedata);
+        }
     }
 
     private void ShowView(DesDaiMeasureABean.BodyBean info) {

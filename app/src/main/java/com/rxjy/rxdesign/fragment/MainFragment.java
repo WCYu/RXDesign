@@ -85,6 +85,9 @@ public class MainFragment extends BaseFragment {
     private MySharedPreferences instance;
     private String image;
     private String name;
+    private MsgNumBean.BodyBean body;
+    int num = 1;
+
 
     @Override
     public int getInitId() {
@@ -135,6 +138,7 @@ public class MainFragment extends BaseFragment {
         } else {
             Glide.with(getActivity()).load(R.mipmap.morenicon).into(imgPersonicon);
         }
+        num = 1;
     }
 
     @Override
@@ -252,7 +256,7 @@ public class MainFragment extends BaseFragment {
                     int statusCode = jsonObject.getInt("StatusCode");
                     if (statusCode == 0) {
                         MsgNumBean info = JSONUtils.toObject(data, MsgNumBean.class);
-                        MsgNumBean.BodyBean body = info.getBody();
+                        body = info.getBody();
                         if (body.getCount() > 0) {
                             tvMessagenum.setVisibility(View.VISIBLE);
                             tvMessagenum.setText(body.getCount() + "");
@@ -274,4 +278,22 @@ public class MainFragment extends BaseFragment {
             }
         });
     }
+
+    public void ShowMsgNum() {
+        if (tvMessagenum != null) {
+            if (num > 0) {
+                if (body != null) {
+                    int i = num + body.getCount();
+                    tvMessagenum.setText(i + "");
+                } else {
+                    tvMessagenum.setText(num + "");
+                }
+                tvMessagenum.setVisibility(View.VISIBLE);
+            } else {
+                tvMessagenum.setVisibility(View.GONE);
+            }
+        }
+        num++;
+    }
+
 }

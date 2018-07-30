@@ -6,9 +6,11 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -24,6 +26,7 @@ import android.widget.TextView;
 import com.rxjy.rxdesign.R;
 import com.rxjy.rxdesign.activity.guide.LoginActivity;
 import com.rxjy.rxdesign.activity.my.SettingActivity;
+import com.rxjy.rxdesign.adapter.home.LFPagerAdapter;
 import com.rxjy.rxdesign.base.BaseActivity;
 import com.rxjy.rxdesign.base.PathUrl;
 import com.rxjy.rxdesign.entity.AllClientNewBean;
@@ -143,6 +146,10 @@ public class DesDaiMeasureActivity extends BaseActivity {
     TextView btnDesDaiMeasureSub;
     @Bind(R.id.ll_bottom)
     LinearLayout llBottom;
+    @Bind(R.id.lf_tab)
+    TabLayout lfTab;
+    @Bind(R.id.lf_pager)
+    ViewPager lfPager;
 
     //指定Fragment的坐标
     private final int ONE_FRAGMENT = 0;
@@ -157,7 +164,7 @@ public class DesDaiMeasureActivity extends BaseActivity {
     private final int TEN_FRAGMENT = 9;
 
     private List<IconInfo> iconList;    //Tab图标的集合
-    private List<Fragment> fragmentList;    //碎片的集合
+    private ArrayList<Fragment> fragmentList;    //碎片的集合
     private AllClientNewBean.ClientNewBean info;
 
     private VolumeOneFragment volumeOneFragment;
@@ -177,6 +184,8 @@ public class DesDaiMeasureActivity extends BaseActivity {
     public double getmaxmoney;
 
     public DesDaiMeasureABean.BodyBean savedatabean;
+    private ArrayList<String> titleList;
+    private LFPagerAdapter lfPagerAdapter;
 
     public void setSavedatabean(DesDaiMeasureABean.BodyBean savedatabean) {
         this.savedatabean = savedatabean;
@@ -206,9 +215,30 @@ public class DesDaiMeasureActivity extends BaseActivity {
         initIcon();
         initFragment();
         //加载默认显示碎片
-        showFragment(fragmentList.get(ONE_FRAGMENT), ONE_FRAGMENT);
+//        showFragment(fragmentList.get(ONE_FRAGMENT), ONE_FRAGMENT);
         setClientInfoToFragment();
         getLHouseData();
+        initListener();
+    }
+
+    private void initListener() {
+        lfTab.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+//                showFragment(fragmentList.get(position), position);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     @Override
@@ -272,21 +302,38 @@ public class DesDaiMeasureActivity extends BaseActivity {
 
         fragmentList = new ArrayList<>();
         //将碎片添加到集合中
-        fragmentList.add(volumeOneFragment);
-        fragmentList.add(volumeTwoFragment);
-        fragmentList.add(volumeThreeFragment);
-        fragmentList.add(volumeFourFragment);
-        fragmentList.add(volumeFiveFragment);
+        fragmentList.add(volumeNineFragment);
+        fragmentList.add(volumeEightFragment);
         fragmentList.add(volumeSixFragment);
         fragmentList.add(volumeSevenFragment);
-        fragmentList.add(volumeEightFragment);
-        fragmentList.add(volumeNineFragment);
+        fragmentList.add(volumeThreeFragment);
+        fragmentList.add(volumeFourFragment);
+        fragmentList.add(volumeOneFragment);
         fragmentList.add(desDaiSurroundingsFragment);
+//        fragmentList.add(volumeTwoFragment);
+//        fragmentList.add(volumeFiveFragment);
+
+        titleList = new ArrayList();
+        titleList.add("企业");
+        titleList.add("客户");
+        titleList.add("房源");
+        titleList.add("楼盘");
+        titleList.add("装修");
+        titleList.add("物业");
+        titleList.add("量房");
+        titleList.add("照片");
+
+        for (int i = 0; i < titleList.size(); i++) {
+            lfTab.addTab(lfTab.newTab().setText(titleList.get(i)));
+        }
+
     }
 
     @Override
     public void initAdapter() {
-
+        lfPagerAdapter = new LFPagerAdapter(getSupportFragmentManager(), fragmentList, titleList);
+        lfPager.setAdapter(lfPagerAdapter);
+        lfTab.setupWithViewPager(lfPager);
     }
 
     /**
@@ -466,16 +513,19 @@ public class DesDaiMeasureActivity extends BaseActivity {
                         getmaxmoney = Double.parseDouble(body.getJDMoney());
                         money = Double.parseDouble(body.getLFMondey());
                         tvMoneyget.setText("￥" + body.getLFMondey());
-                        volumeOneFragment.setLHouseData(body);
-                        volumeTwoFragment.setLHouseData(body);
-                        volumeThreeFragment.setLHouseData(body);
-                        volumeFourFragment.setLHouseData(body);
-                        volumeFiveFragment.setLHouseData(body);
+
+                        Log.e("tag_获取量房", "volumeNineFragment");
+                        volumeNineFragment.setLHouseData(body);
+                        volumeEightFragment.setLHouseData(body);
                         volumeSixFragment.setLHouseData(body);
                         volumeSevenFragment.setLHouseData(body);
-                        volumeEightFragment.setLHouseData(body);
-                        volumeNineFragment.setLHouseData(body);
+                        volumeThreeFragment.setLHouseData(body);
+                        volumeFourFragment.setLHouseData(body);
+                        Log.e("tag_获取量房", "volumeOneFragment");
+                        volumeOneFragment.setLHouseData(body);
                         desDaiSurroundingsFragment.setLHouseData(body);
+//                        volumeTwoFragment.setLHouseData(body);
+//                        volumeFiveFragment.setLHouseData(body);
                         if (body.getImagesArray().getLFImages() != null && body.getImagesArray().getLFImages().size() > 0) {
                             for (int i = 0; i < body.getImagesArray().getLFImages().size(); i++) {
                                 if (body.getImagesArray().getLFImages().get(i).getChildList().size() > 0) {
@@ -496,6 +546,7 @@ public class DesDaiMeasureActivity extends BaseActivity {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Log.e("tag_fragment", "赋值失败" + e.toString());
                 }
             }
 

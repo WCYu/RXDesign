@@ -1,17 +1,10 @@
 package com.rxjy.rxdesign.fragment.volumeroom;
 
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.EditText;
 
 import com.rxjy.rxdesign.R;
@@ -23,11 +16,7 @@ import com.rxjy.rxdesign.entity.AllClientNewBean;
 import com.rxjy.rxdesign.entity.AllImagesInfo;
 import com.rxjy.rxdesign.entity.DesDaiMeasureABean;
 import com.rxjy.rxdesign.entity.NewOneInfo;
-import com.rxjy.rxdesign.entity.PersonBean;
 import com.rxjy.rxdesign.fragment.utils.BaseFragment;
-import com.rxjy.rxdesign.utils.AndroidBug5497Workaround;
-import com.rxjy.rxdesign.utils.Constants;
-import com.rxjy.rxdesign.utils.JSONUtils;
 import com.rxjy.rxdesign.utils.OkhttpUtils;
 import com.rxjy.rxdesign.utils.StringUtils;
 import com.rxjy.rxdesign.utils.ToastUtil;
@@ -177,7 +166,6 @@ public class VolumeOneFragment extends BaseFragment {
 
     public void setLHouseData(DesDaiMeasureABean.BodyBean bean) {
         lhousedata = bean;
-        ShowView(bean);
     }
 
     /**
@@ -195,6 +183,16 @@ public class VolumeOneFragment extends BaseFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if (lhousedata != null) {
+            ShowView(lhousedata);
+        } else {
+            Log.e("tag_OneFragmenr", "lhousedata为空");
+        }
+    }
+
+    @Override
     public void initView(View view) {
         ButterKnife.bind(this, view);
     }
@@ -202,24 +200,24 @@ public class VolumeOneFragment extends BaseFragment {
     @Override
     public void initData() {
         activity = (DesDaiMeasureActivity) getActivity();
-        etNewKongtiaoshebei.addTextChangedListener(new MyEditListener(etNewKongtiaoshebei));
-        etNewQiangdianxiang.addTextChangedListener(new MyEditListener(etNewQiangdianxiang));
-        etNewRuodianxiang.addTextChangedListener(new MyEditListener(etNewRuodianxiang));
-        etNewShangshuidian.addTextChangedListener(new MyEditListener(etNewShangshuidian));
-        etXiashuidian.addTextChangedListener(new MyEditListener(etXiashuidian));
-        etNewXiashuidianchicun.addTextChangedListener(new MyEditListener(etNewXiashuidianchicun));
-        etNewZhuliangxiagao.addTextChangedListener(new MyEditListener(etNewZhuliangxiagao));
-        etNewCiliangxiagao.addTextChangedListener(new MyEditListener(etNewCiliangxiagao));
-        etNewYuandingmiangao.addTextChangedListener(new MyEditListener(etNewYuandingmiangao));
-        etNewPenlinzuididian.addTextChangedListener(new MyEditListener(etNewPenlinzuididian));
-        etNewFengkouzuididian.addTextChangedListener(new MyEditListener(etNewFengkouzuididian));
-        etNewMuqiangkuangjiajianju.addTextChangedListener(new MyEditListener(etNewMuqiangkuangjiajianju));
-        etMeasureCaCargoDoorHight.addTextChangedListener(new MyEditListener(etMeasureCaCargoDoorHight));
-        etMeasureCaCargoDoorWide.addTextChangedListener(new MyEditListener(etMeasureCaCargoDoorWide));
-        etMeasureCaGrondElevation.addTextChangedListener(new MyEditListener(etMeasureCaGrondElevation));
-        etMeasureWindowsillHeight.addTextChangedListener(new MyEditListener(etMeasureWindowsillHeight));
-        etMeasureWindowsillWidth.addTextChangedListener(new MyEditListener(etMeasureWindowsillWidth));
-        etMeasureWindowsHeight.addTextChangedListener(new MyEditListener(etMeasureWindowsHeight));
+//        etNewKongtiaoshebei.addTextChangedListener(new MyEditListener(etNewKongtiaoshebei));
+//        etNewQiangdianxiang.addTextChangedListener(new MyEditListener(etNewQiangdianxiang));
+//        etNewRuodianxiang.addTextChangedListener(new MyEditListener(etNewRuodianxiang));
+//        etNewShangshuidian.addTextChangedListener(new MyEditListener(etNewShangshuidian));
+//        etXiashuidian.addTextChangedListener(new MyEditListener(etXiashuidian));
+//        etNewXiashuidianchicun.addTextChangedListener(new MyEditListener(etNewXiashuidianchicun));
+//        etNewZhuliangxiagao.addTextChangedListener(new MyEditListener(etNewZhuliangxiagao));
+//        etNewCiliangxiagao.addTextChangedListener(new MyEditListener(etNewCiliangxiagao));
+//        etNewYuandingmiangao.addTextChangedListener(new MyEditListener(etNewYuandingmiangao));
+//        etNewPenlinzuididian.addTextChangedListener(new MyEditListener(etNewPenlinzuididian));
+//        etNewFengkouzuididian.addTextChangedListener(new MyEditListener(etNewFengkouzuididian));
+//        etNewMuqiangkuangjiajianju.addTextChangedListener(new MyEditListener(etNewMuqiangkuangjiajianju));
+//        etMeasureCaCargoDoorHight.addTextChangedListener(new MyEditListener(etMeasureCaCargoDoorHight));
+//        etMeasureCaCargoDoorWide.addTextChangedListener(new MyEditListener(etMeasureCaCargoDoorWide));
+//        etMeasureCaGrondElevation.addTextChangedListener(new MyEditListener(etMeasureCaGrondElevation));
+//        etMeasureWindowsillHeight.addTextChangedListener(new MyEditListener(etMeasureWindowsillHeight));
+//        etMeasureWindowsillWidth.addTextChangedListener(new MyEditListener(etMeasureWindowsillWidth));
+//        etMeasureWindowsHeight.addTextChangedListener(new MyEditListener(etMeasureWindowsHeight));
         initAddData();
         initPhotoData();
     }
@@ -945,7 +943,7 @@ public class VolumeOneFragment extends BaseFragment {
                     } else {
                         huotiwidth = "";
                     }
-                    if(activity.savedatabean != null) {
+                    if (activity.savedatabean != null) {
                         activity.savedatabean.setCa_CargoDoorWide(huotiwidth);
                     }
                     break;
@@ -956,7 +954,7 @@ public class VolumeOneFragment extends BaseFragment {
                     } else {
                         groundcha = "";
                     }
-                    if(activity.savedatabean != null) {
+                    if (activity.savedatabean != null) {
                         activity.savedatabean.setCa_GroundElevation(groundcha);
                     }
                     break;
@@ -967,7 +965,7 @@ public class VolumeOneFragment extends BaseFragment {
                     } else {
                         windowsillhight = "";
                     }
-                    if(activity.savedatabean != null) {
+                    if (activity.savedatabean != null) {
                         activity.savedatabean.setCa_windowsillHight(windowsillhight);
                     }
                     break;
@@ -978,7 +976,7 @@ public class VolumeOneFragment extends BaseFragment {
                     } else {
                         windowwidth = "";
                     }
-                    if(activity.savedatabean != null) {
+                    if (activity.savedatabean != null) {
                         activity.savedatabean.setCa_WindowWidth(windowwidth);
                     }
                     break;
@@ -989,7 +987,7 @@ public class VolumeOneFragment extends BaseFragment {
                     } else {
                         windowhight = "";
                     }
-                    if(activity.savedatabean != null) {
+                    if (activity.savedatabean != null) {
                         activity.savedatabean.setCa_WindowHight(windowhight);
                     }
                     break;

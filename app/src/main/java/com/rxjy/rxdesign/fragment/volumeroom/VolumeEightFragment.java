@@ -62,7 +62,9 @@ public class VolumeEightFragment extends BaseFragment {
 
     public void setLHouseData(DesDaiMeasureABean.BodyBean bean) {
         lhousedata = bean;
-
+        if (lhousedata != null) {
+            ShowView(lhousedata);
+        }
     }
 
     // 量房列表中的数据
@@ -85,8 +87,16 @@ public class VolumeEightFragment extends BaseFragment {
     @Override
     public void initData() {
         activity = (DesDaiMeasureActivity) getActivity();
-        etNewKehuxingming.addTextChangedListener(new MyEditListener(etNewKehuxingming));
+//        etNewKehuxingming.addTextChangedListener(new MyEditListener(etNewKehuxingming));
         initAddData();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (lhousedata != null) {
+            ShowView(lhousedata);
+        }
     }
 
     //展示添加的源数据
@@ -228,7 +238,6 @@ public class VolumeEightFragment extends BaseFragment {
                 activity.savedatabean.setCa_proHeadCharacter(characterlist.get(position));
             }
         });
-        ShowView(lhousedata);
     }
 
     private void ShowView(DesDaiMeasureABean.BodyBean info) {

@@ -194,7 +194,7 @@ public class LoginActivity extends BaseActivity {
     private void getVCode(String phone) {
         Map map = new HashMap();
         map.put("phone", phone);
-        map.put("AppId", "8");
+        map.put("AppId", 8);
         OkhttpUtils.doPost(PathUrl.RENZHENGCODEURL, map, new OkhttpUtils.MyCall() {
             @Override
             public void success(String data) {

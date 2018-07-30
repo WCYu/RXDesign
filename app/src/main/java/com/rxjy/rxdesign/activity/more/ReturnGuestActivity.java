@@ -455,8 +455,8 @@ public class ReturnGuestActivity extends BaseActivity {
                 subdatatwo.setCa_SWIndustryTypeID(ptypetwoc + "");
                 clientAuxiliary = JSONUtils.toString(subdatatwo);
                 Log.e("clientAuxiliary", clientAuxiliary);
-
                 getDanHaoData();
+                tvSubmit.setEnabled(false);
                 break;
         }
     }
@@ -519,6 +519,7 @@ public class ReturnGuestActivity extends BaseActivity {
                         String orderNumber = body.getOrderNumber();
                         submitDanHaoData(orderNumber);
                     } else {
+                        tvSubmit.setEnabled(true);
                         ToastUtil.getInstance().toastCentent(statusMsg);
                     }
                 } catch (JSONException e) {
@@ -529,6 +530,7 @@ public class ReturnGuestActivity extends BaseActivity {
             @Override
             public void error(String message) {
                 Log.e("tag_获取单号失败", message);
+                tvSubmit.setEnabled(true);
             }
         });
     }
@@ -548,7 +550,9 @@ public class ReturnGuestActivity extends BaseActivity {
                     int statusCode = jsonObject.getInt("StatusCode");
                     if (statusCode == 100) {
                         ToastUtil.getInstance().toastCentent(statusMsg);
+                        finish();
                     } else {
+                        tvSubmit.setEnabled(true);
                         ToastUtil.getInstance().toastCentent(statusMsg);
                     }
                 } catch (JSONException e) {
@@ -560,7 +564,7 @@ public class ReturnGuestActivity extends BaseActivity {
             @Override
             public void error(String message) {
                 Log.e("tag_提交单号失败", message);
-
+                tvSubmit.setEnabled(true);
             }
         });
     }

@@ -104,7 +104,6 @@ public class VolumeThreeFragment extends BaseFragment {
 
     public void setLHouseData(DesDaiMeasureABean.BodyBean bean) {
         lhousedata = bean;
-
     }
 
     /**
@@ -130,10 +129,10 @@ public class VolumeThreeFragment extends BaseFragment {
     public void initData() {
         Log.e("单项数据的钱", itemmoney + "");
         activity = (DesDaiMeasureActivity) getActivity();
-        etNewZhuangxiuyusuan.addTextChangedListener(new MyEditListener(etNewZhuangxiuyusuan));
-        etNewGongqi.addTextChangedListener(new MyEditListener(etNewGongqi));
-        etNewLiangfangdizhi.addTextChangedListener(new MyEditListener(etNewLiangfangdizhi));
-        etNewKongjianxuqiu.addTextChangedListener(new MyEditListener(etNewKongjianxuqiu));
+//        etNewZhuangxiuyusuan.addTextChangedListener(new MyEditListener(etNewZhuangxiuyusuan));
+//        etNewGongqi.addTextChangedListener(new MyEditListener(etNewGongqi));
+//        etNewLiangfangdizhi.addTextChangedListener(new MyEditListener(etNewLiangfangdizhi));
+//        etNewKongjianxuqiu.addTextChangedListener(new MyEditListener(etNewKongjianxuqiu));
         initAddData();
     }
 
@@ -303,7 +302,9 @@ public class VolumeThreeFragment extends BaseFragment {
             }
         });
 
-        ShowView(lhousedata);
+        if (lhousedata != null) {
+            ShowView(lhousedata);
+        }
 
     }
 

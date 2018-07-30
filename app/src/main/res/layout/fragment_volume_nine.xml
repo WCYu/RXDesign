@@ -19,27 +19,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_enterprise"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_enterprisesize"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_firstin"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -92,6 +71,45 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="全称"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <EditText
+                            android:id="@+id/et_quancheng"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="right"
+                            android:hint="请输入"
+                            android:textColor="@color/cor595757"
+                            android:textColorHint="@color/line"
+                            android:textSize="28px" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorWhite"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="经营范围"
                             android:textColor="@color/cor595757"
                             android:textSize="28px" />
@@ -116,7 +134,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20px"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -146,6 +165,126 @@
                             android:textColorHint="@color/line"
                             android:textSize="28px" />
                     </LinearLayout>
+                </LinearLayout>
+
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_enterprise"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                </com.rxjy.rxdesign.custom.TextGridview>
+
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_enterprisesize"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                </com.rxjy.rxdesign.custom.TextGridview>
+
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_firstin"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                </com.rxjy.rxdesign.custom.TextGridview>
+
+
+                <LinearLayout
+                    android:id="@+id/ly_isXinKai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="20px">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="面积"
+                                android:textColor="@color/cor595757"
+                                android:textSize="28px" />
+
+                            <EditText
+                                android:id="@+id/et_mianji"
+                                android:layout_width="0px"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:gravity="right"
+                                android:hint="请输入"
+                                android:textColor="@color/cor595757"
+                                android:textColorHint="@color/line"
+                                android:textSize="28px" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20px"
+                                android:text="㎡"
+                                android:textColor="@color/cor595757"
+                                android:textSize="28px" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="20px">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="租金"
+                                android:textColor="@color/cor595757"
+                                android:textSize="28px" />
+
+                            <EditText
+                                android:id="@+id/et_zujin"
+                                android:layout_width="0px"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:gravity="right"
+                                android:hint="请输入"
+                                android:textColor="@color/cor595757"
+                                android:textColorHint="@color/line"
+                                android:textSize="28px" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20px"
+                                android:text="元/月"
+                                android:textColor="@color/cor595757"
+                                android:textSize="28px" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
