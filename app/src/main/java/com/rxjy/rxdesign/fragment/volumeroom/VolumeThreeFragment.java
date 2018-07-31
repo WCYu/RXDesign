@@ -34,7 +34,7 @@ import butterknife.OnClick;
 import static com.rxjy.rxdesign.utils.Constants.LF_NUM;
 
 /**
- * A simple {@link Fragment} subclass.
+ * 装修
  */
 public class VolumeThreeFragment extends BaseFragment {
 
@@ -129,10 +129,6 @@ public class VolumeThreeFragment extends BaseFragment {
     public void initData() {
         Log.e("单项数据的钱", itemmoney + "");
         activity = (DesDaiMeasureActivity) getActivity();
-//        etNewZhuangxiuyusuan.addTextChangedListener(new MyEditListener(etNewZhuangxiuyusuan));
-//        etNewGongqi.addTextChangedListener(new MyEditListener(etNewGongqi));
-//        etNewLiangfangdizhi.addTextChangedListener(new MyEditListener(etNewLiangfangdizhi));
-//        etNewKongjianxuqiu.addTextChangedListener(new MyEditListener(etNewKongjianxuqiu));
         initAddData();
     }
 
@@ -168,9 +164,53 @@ public class VolumeThreeFragment extends BaseFragment {
         tgvProjectattribute.setTvType("项目属性");
         tgvProjectattribute.setGvLines(4);
         tgvProjectattribute.setGvData(getActivity(), projectattribute);
+
+
+        tgvDemandstyle.setTvType("意向风格");
+        tgvDemandstyle.setGvLines(4);
+        tgvDemandstyle.setGvData(getActivity(), demandstyle);
+
+
+        tgvZhaobiao.setTvType("招标");
+        tgvZhaobiao.setGvLines(4);
+        tgvZhaobiao.setGvData(getActivity(), yesnolist);
+
+
+        tgvFengshui.setTvType("风水要求");
+        tgvFengshui.setGvLines(4);
+        tgvFengshui.setGvData(getActivity(), yesnolist);
+
+
+        tgvSoft.setTvType("家具软装");
+        tgvSoft.setGvLines(4);
+        tgvSoft.setGvData(getActivity(), yesnolist);
+
+        tgvIntelligentweak.setTvType("智能弱电");
+        tgvIntelligentweak.setGvLines(4);
+        tgvIntelligentweak.setGvData(getActivity(), yesnolist);
+
+        tgvPadmoney.setTvType("垫资");
+        tgvPadmoney.setGvLines(4);
+        tgvPadmoney.setGvData(getActivity(), yesnolist);
+
+
+        if (lhousedata != null) {
+            ShowView(lhousedata);
+        } else {
+            DesDaiMeasureActivity desDaiMeasureActivity = (DesDaiMeasureActivity) getActivity();
+            if (desDaiMeasureActivity.savedatabean != null) {
+                Log.e("tag_获取数据", "正常");
+                ShowView(desDaiMeasureActivity.savedatabean);
+            }
+        }
+
+        checkListener();
+    }
+
+    private void checkListener() {
         tgvProjectattribute.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//项目属性
                 if (projectattributem != 1) {
                     projectattributem = 1;
                 }
@@ -197,12 +237,9 @@ public class VolumeThreeFragment extends BaseFragment {
             }
         });
 
-        tgvDemandstyle.setTvType("意向风格");
-        tgvDemandstyle.setGvLines(4);
-        tgvDemandstyle.setGvData(getActivity(), demandstyle);
         tgvDemandstyle.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//风格
                 if (demandstylem != 1) {
                     demandstylem = 1;
                 }
@@ -210,12 +247,9 @@ public class VolumeThreeFragment extends BaseFragment {
             }
         });
 
-        tgvZhaobiao.setTvType("招标");
-        tgvZhaobiao.setGvLines(4);
-        tgvZhaobiao.setGvData(getActivity(), yesnolist);
         tgvZhaobiao.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//招标
                 if (zhaobiaom != 1) {
                     zhaobiaom = 1;
                 }
@@ -223,12 +257,9 @@ public class VolumeThreeFragment extends BaseFragment {
             }
         });
 
-        tgvFengshui.setTvType("风水要求");
-        tgvFengshui.setGvLines(4);
-        tgvFengshui.setGvData(getActivity(), yesnolist);
         tgvFengshui.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//风水
                 if (fengshuim != 1) {
                     fengshuim = 1;
                 }
@@ -243,12 +274,9 @@ public class VolumeThreeFragment extends BaseFragment {
             }
         });
 
-        tgvSoft.setTvType("家具软装");
-        tgvSoft.setGvLines(4);
-        tgvSoft.setGvData(getActivity(), yesnolist);
         tgvSoft.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//家具
                 if (softm != 1) {
                     softm = 1;
                 }
@@ -263,12 +291,9 @@ public class VolumeThreeFragment extends BaseFragment {
             }
         });
 
-        tgvIntelligentweak.setTvType("智能弱电");
-        tgvIntelligentweak.setGvLines(4);
-        tgvIntelligentweak.setGvData(getActivity(), yesnolist);
         tgvIntelligentweak.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//智能弱电
                 if (intelligentweakm != 1) {
                     intelligentweakm = 1;
                 }
@@ -282,22 +307,16 @@ public class VolumeThreeFragment extends BaseFragment {
                 }
             }
         });
-        tgvPadmoney.setTvType("垫资");
-        tgvPadmoney.setGvLines(4);
-        tgvPadmoney.setGvData(getActivity(), yesnolist);
+
         tgvPadmoney.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//垫资
                 if (advancePayment != 1) {
                     advancePayment = 1;
                 }
                 activity.savedatabean.setCi_advancePayment(yesnolist.get(position));
             }
         });
-
-        if (lhousedata != null) {
-            ShowView(lhousedata);
-        }
 
     }
 

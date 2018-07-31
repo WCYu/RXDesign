@@ -370,6 +370,12 @@ public class VolumeFourFragment extends BaseFragment {
 
         if (lhousedata != null) {
             ShowView(lhousedata);
+        } else {
+            DesDaiMeasureActivity desDaiMeasureActivity = (DesDaiMeasureActivity) getActivity();
+            if (desDaiMeasureActivity.savedatabean != null) {
+                Log.e("tag_获取数据", "正常");
+                ShowView(desDaiMeasureActivity.savedatabean);
+            }
         }
     }
 

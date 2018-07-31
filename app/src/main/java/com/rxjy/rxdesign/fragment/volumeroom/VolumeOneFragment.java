@@ -188,7 +188,11 @@ public class VolumeOneFragment extends BaseFragment {
         if (lhousedata != null) {
             ShowView(lhousedata);
         } else {
-            Log.e("tag_OneFragmenr", "lhousedata为空");
+            DesDaiMeasureActivity desDaiMeasureActivity = (DesDaiMeasureActivity) getActivity();
+            if (desDaiMeasureActivity.savedatabean != null) {
+                Log.e("tag_获取数据", "正常");
+                ShowView(desDaiMeasureActivity.savedatabean);
+            }
         }
     }
 
