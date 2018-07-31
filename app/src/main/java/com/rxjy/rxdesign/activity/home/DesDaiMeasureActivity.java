@@ -217,7 +217,6 @@ public class DesDaiMeasureActivity extends BaseActivity {
         //加载默认显示碎片
 //        showFragment(fragmentList.get(ONE_FRAGMENT), ONE_FRAGMENT);
         setClientInfoToFragment();
-        getLHouseData();
         initListener();
     }
 
@@ -248,6 +247,7 @@ public class DesDaiMeasureActivity extends BaseActivity {
             Log.e("DesDaiMeasureABean", "数据为空");
             savedatabean = new DesDaiMeasureABean.BodyBean();
         }
+        getLHouseData();
     }
 
     private void initIntentData() {
@@ -297,9 +297,9 @@ public class DesDaiMeasureActivity extends BaseActivity {
         if (volumeNineFragment == null) {
             volumeNineFragment = new VolumeNineFragment();
         }
-        if (desDaiSurroundingsFragment == null)
+        if (desDaiSurroundingsFragment == null) {
             desDaiSurroundingsFragment = new DesDaiSurroundingsFragment();
-
+        }
         fragmentList = new ArrayList<>();
         //将碎片添加到集合中
         fragmentList.add(volumeNineFragment);
@@ -326,7 +326,6 @@ public class DesDaiMeasureActivity extends BaseActivity {
         for (int i = 0; i < titleList.size(); i++) {
             lfTab.addTab(lfTab.newTab().setText(titleList.get(i)));
         }
-
     }
 
     @Override
@@ -514,16 +513,61 @@ public class DesDaiMeasureActivity extends BaseActivity {
                         money = Double.parseDouble(body.getLFMondey());
                         tvMoneyget.setText("￥" + body.getLFMondey());
 
-                        Log.e("tag_获取量房", "volumeNineFragment");
-                        volumeNineFragment.setLHouseData(body);
-                        volumeEightFragment.setLHouseData(body);
-                        volumeSixFragment.setLHouseData(body);
-                        volumeSevenFragment.setLHouseData(body);
-                        volumeThreeFragment.setLHouseData(body);
-                        volumeFourFragment.setLHouseData(body);
-                        Log.e("tag_获取量房", "volumeOneFragment");
-                        volumeOneFragment.setLHouseData(body);
-                        desDaiSurroundingsFragment.setLHouseData(body);
+                        if (volumeNineFragment == null) {
+                            volumeNineFragment = new VolumeNineFragment();
+                            volumeNineFragment.setLHouseData(body);
+                        } else {
+                            volumeNineFragment.setLHouseData(body);
+                        }
+                        if (volumeEightFragment == null) {
+                            volumeEightFragment = new VolumeEightFragment();
+                            volumeEightFragment.setLHouseData(body);
+                        } else {
+                            volumeEightFragment.setLHouseData(body);
+                        }
+
+                        if (volumeSixFragment == null) {
+                            volumeSixFragment = new VolumeSixFragment();
+                            volumeSixFragment.setLHouseData(body);
+                        } else {
+                            volumeSixFragment.setLHouseData(body);
+                        }
+
+                        if (volumeSevenFragment == null) {
+                            volumeSevenFragment = new VolumeSevenFragment();
+                            volumeSevenFragment.setLHouseData(body);
+                        } else {
+                            volumeSevenFragment.setLHouseData(body);
+                        }
+
+                        if (volumeThreeFragment == null) {
+                            volumeThreeFragment = new VolumeThreeFragment();
+                            volumeThreeFragment.setLHouseData(body);
+                        } else {
+                            volumeThreeFragment.setLHouseData(body);
+                        }
+
+                        if (volumeFourFragment == null) {
+                            volumeFourFragment = new VolumeFourFragment();
+                            volumeFourFragment.setLHouseData(body);
+                        } else {
+                            volumeFourFragment.setLHouseData(body);
+                        }
+
+                        if (volumeOneFragment == null) {
+                            volumeOneFragment = new VolumeOneFragment();
+                            volumeOneFragment.setLHouseData(body);
+                        } else {
+                            volumeOneFragment.setLHouseData(body);
+                        }
+
+                        if (desDaiSurroundingsFragment == null) {
+                            desDaiSurroundingsFragment = new DesDaiSurroundingsFragment();
+                            desDaiSurroundingsFragment.setLHouseData(body);
+                        } else {
+                            desDaiSurroundingsFragment.setLHouseData(body);
+                        }
+
 //                        volumeTwoFragment.setLHouseData(body);
 //                        volumeFiveFragment.setLHouseData(body);
                         if (body.getImagesArray().getLFImages() != null && body.getImagesArray().getLFImages().size() > 0) {

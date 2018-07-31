@@ -185,7 +185,7 @@ public class MainActivity extends BaseActivity {
             OkhttpUtils.doPost("https://api.dcwzg.com:9191/actionapi/AppHome/OfflineApp", map, new OkhttpUtils.MyCall() {
                 @Override
                 public void success(String data) {
-                    Log.e("tag_下线", data);
+                    Log.e("tag_下线MainActivity", data);
                 }
 
                 @Override

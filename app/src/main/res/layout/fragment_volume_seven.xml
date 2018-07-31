@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,11 +39,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:gravity="right"
                     android:hint="请输入"
-                    android:inputType="numberDecimal"
                     android:maxEms="11"
                     android:textColor="@color/cor595757"
                     android:textColorHint="@color/line"
@@ -57,6 +55,46 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20px"
             android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="20px">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="商圈"
+                    android:textColor="@color/cor595757"
+                    android:textSize="28px" />
+
+                <EditText
+                    android:id="@+id/et_shangquan"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="请输入"
+                    android:maxEms="11"
+                    android:textColor="@color/cor595757"
+                    android:textColorHint="@color/line"
+                    android:textSize="28px" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -98,7 +136,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20px"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -141,7 +180,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20px"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="0dp"

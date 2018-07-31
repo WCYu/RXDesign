@@ -12,46 +12,12 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="90px">
+            android:layout_marginBottom="100px">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="78px"
-                        android:layout_marginTop="20px"
-                        android:background="@color/colorWhite"
-                        android:padding="20px">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="成立时间"
-                            android:textColor="@color/cor595757"
-                            android:textSize="28px" />
-
-                        <TextView
-                            android:id="@+id/tv_new_chenglishijian"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:text="请选择"
-                            android:textColor="@color/cor595757"
-                            android:textSize="28px" />
-
-                    </RelativeLayout>
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -88,6 +54,40 @@
                             android:textSize="28px" />
 
                     </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78px"
+                        android:layout_marginTop="20px"
+                        android:background="@color/colorWhite"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="类型"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:id="@+id/tv_qytype"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:text="请选择"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -170,30 +170,57 @@
                 <com.rxjy.rxdesign.custom.TextGridview
                     android:id="@+id/tgv_enterprise"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
+                    android:layout_height="wrap_content" />
 
                 <com.rxjy.rxdesign.custom.TextGridview
                     android:id="@+id/tgv_enterprisesize"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content" />
 
-                </com.rxjy.rxdesign.custom.TextGridview>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78px"
+                        android:layout_marginTop="20px"
+                        android:background="@color/colorWhite"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="成立时间"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:id="@+id/tv_new_chenglishijian"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:text="请选择"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                    </RelativeLayout>
+                </LinearLayout>
 
                 <com.rxjy.rxdesign.custom.TextGridview
                     android:id="@+id/tgv_firstin"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
+                    android:layout_height="wrap_content" />
 
                 <LinearLayout
                     android:id="@+id/ly_isXinKai"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -225,6 +252,7 @@
                                 android:background="@null"
                                 android:gravity="right"
                                 android:hint="请输入"
+                                android:inputType="number"
                                 android:textColor="@color/cor595757"
                                 android:textColorHint="@color/line"
                                 android:textSize="28px" />
@@ -270,6 +298,7 @@
                                 android:background="@null"
                                 android:gravity="right"
                                 android:hint="请输入"
+                                android:inputType="number"
                                 android:textColor="@color/cor595757"
                                 android:textColorHint="@color/line"
                                 android:textSize="28px" />
@@ -283,6 +312,76 @@
                                 android:textSize="28px" />
                         </LinearLayout>
 
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="78px"
+                            android:layout_marginTop="20px"
+                            android:background="@color/colorWhite"
+                            android:padding="20px">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="办公地点"
+                                android:textColor="@color/cor595757"
+                                android:textSize="28px" />
+
+                            <TextView
+                                android:id="@+id/tv_bangongdidian"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:text="请选择"
+                                android:textColor="@color/cor595757"
+                                android:textSize="28px" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="20px">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="详细地址"
+                                android:textColor="@color/cor595757"
+                                android:textSize="28px" />
+
+                            <EditText
+                                android:id="@+id/et_address"
+                                android:layout_width="0px"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:gravity="right"
+                                android:hint="请输入"
+                                android:textColor="@color/cor595757"
+                                android:textColorHint="@color/line"
+                                android:textSize="28px" />
+
+                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>

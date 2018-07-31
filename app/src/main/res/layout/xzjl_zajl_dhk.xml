@@ -44,7 +44,7 @@
             android:layout_gravity="start"
             android:layout_margin="20px"
             android:background="@drawable/back_shi_cheng"
-            android:padding="40px">
+            android:padding="20px">
 
             <TextView
                 android:id="@+id/zajl_item_tv_zsxm_res"

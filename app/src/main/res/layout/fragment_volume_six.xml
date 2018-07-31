@@ -22,36 +22,142 @@
                 <com.rxjy.rxdesign.custom.TextGridview
                     android:id="@+id/tgv_housestatus"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_norenttime"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_makedealtype"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
+                    android:layout_height="wrap_content" />
 
                 <com.rxjy.rxdesign.custom.TextGridview
                     android:id="@+id/tgv_housefromstatus"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
+                    android:layout_height="wrap_content" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20px"
                     android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorWhite"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="使用面积"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <EditText
+                            android:id="@+id/et_new_mianji"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="right"
+                            android:hint="请输入"
+                            android:inputType="numberDecimal"
+                            android:maxEms="11"
+                            android:paddingRight="20px"
+                            android:textColor="@color/cor595757"
+                            android:textColorHint="@color/line"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="㎡"
+                            android:textColor="@color/cor595757"
+                            android:textSize="26px" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_makedealtype"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78px"
+                        android:layout_marginTop="20px"
+                        android:background="@color/colorWhite"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="量房地址"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:id="@+id/tv_liangfangdidian"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:text="请选择"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorWhite"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="详细地址"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <EditText
+                            android:id="@+id/et_address"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="right"
+                            android:hint="请输入"
+                            android:textColor="@color/cor595757"
+                            android:textColorHint="@color/line"
+                            android:textSize="28px" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -95,49 +201,196 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ly_zu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20px"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <com.rxjy.rxdesign.custom.TextGridview
+                        android:id="@+id/tgv_norenttime"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginTop="20px"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="20px">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="租期"
+                                android:textColor="@color/cor595757"
+                                android:textSize="28px" />
+
+                            <EditText
+                                android:id="@+id/et_zuqi"
+                                android:layout_width="0px"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:gravity="right"
+                                android:hint="请输入"
+                                android:inputType="numberDecimal"
+                                android:maxEms="11"
+                                android:paddingRight="20px"
+                                android:textColor="@color/cor595757"
+                                android:textColorHint="@color/line"
+                                android:textSize="28px" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="年"
+                                android:textColor="@color/cor595757"
+                                android:textSize="26px" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="20px">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="月资金"
+                                android:textColor="@color/cor595757"
+                                android:textSize="28px" />
+
+                            <EditText
+                                android:id="@+id/et_yuezujin"
+                                android:layout_width="0px"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:gravity="right"
+                                android:hint="请输入"
+                                android:inputType="numberDecimal"
+                                android:maxEms="11"
+                                android:paddingRight="20px"
+                                android:textColor="@color/cor595757"
+                                android:textColorHint="@color/line"
+                                android:textSize="28px" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="万"
+                                android:textColor="@color/cor595757"
+                                android:textSize="26px" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ly_mai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="20px">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="金额"
+                                android:textColor="@color/cor595757"
+                                android:textSize="28px" />
+
+                            <EditText
+                                android:id="@+id/et_jine"
+                                android:layout_width="0px"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:gravity="right"
+                                android:hint="请输入"
+                                android:inputType="numberDecimal"
+                                android:maxEms="11"
+                                android:paddingRight="20px"
+                                android:textColor="@color/cor595757"
+                                android:textColorHint="@color/line"
+                                android:textSize="28px" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="万"
+                                android:textColor="@color/cor595757"
+                                android:textSize="26px" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78px"
+                        android:layout_marginTop="20px"
                         android:background="@color/colorWhite"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
                         android:padding="20px">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="使用面积"
+                            android:layout_centerVertical="true"
+                            android:text="交房时间"
                             android:textColor="@color/cor595757"
-                            android:textSize="28px" />
-
-                        <EditText
-                            android:id="@+id/et_new_mianji"
-                            android:layout_width="0px"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@null"
-                            android:gravity="right"
-                            android:hint="请输入"
-                            android:inputType="numberDecimal"
-                            android:maxEms="11"
-                            android:textColor="@color/cor595757"
-                            android:textColorHint="@color/line"
                             android:textSize="28px" />
 
                         <TextView
+                            android:id="@+id/tv_new_jiaofangshijian"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="㎡"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:text="请选择"
                             android:textColor="@color/cor595757"
-                            android:textSize="26px" />
+                            android:textSize="28px" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -146,34 +399,8 @@
                     android:layout_height="78px"
                     android:layout_marginTop="20px"
                     android:background="@color/colorWhite"
-                    android:padding="20px">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="交房时间"
-                        android:textColor="@color/cor595757"
-                        android:textSize="28px" />
-
-                    <TextView
-                        android:id="@+id/tv_new_jiaofangshijian"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:text="请选择"
-                        android:textColor="@color/cor595757"
-                        android:textSize="28px" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="78px"
-                    android:layout_marginTop="20px"
-                    android:background="@color/colorWhite"
-                    android:padding="20px">
+                    android:padding="20px"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"

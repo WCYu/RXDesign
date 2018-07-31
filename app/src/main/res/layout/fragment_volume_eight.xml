@@ -12,7 +12,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="90px">
+            android:layout_marginBottom="100px">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="客户姓名"
+                            android:text="姓名"
                             android:textColor="@color/cor595757"
                             android:textSize="28px" />
 
@@ -57,47 +57,150 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78px"
+                        android:layout_marginTop="20px"
+                        android:background="@color/colorWhite"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="职务"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:id="@+id/tv_zhiwu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:text="请选择"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
                 <com.rxjy.rxdesign.custom.TextGridview
                     android:id="@+id/tgv_age"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_sex"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_contract"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_identity"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
+                    android:layout_height="wrap_content" />
 
                 <com.rxjy.rxdesign.custom.TextGridview
                     android:id="@+id/tgv_attention"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content" />
 
-                </com.rxjy.rxdesign.custom.TextGridview>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78px"
+                        android:layout_marginTop="20px"
+                        android:background="@color/colorWhite"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="背景"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:id="@+id/tv_beijing"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:text="请选择"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_sex"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78px"
+                        android:layout_marginTop="20px"
+                        android:background="@color/colorWhite"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="角色"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:id="@+id/tv_juese"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:text="请选择"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_juece"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_chnegyi"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_contract"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_identity"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
 
                 <com.rxjy.rxdesign.custom.TextGridview
                     android:id="@+id/tgv_character"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
 
             </LinearLayout>
         </ScrollView>

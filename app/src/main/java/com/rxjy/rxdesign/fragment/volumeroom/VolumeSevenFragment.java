@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * A simple {@link Fragment} subclass.
+ * 楼盘
  */
 public class VolumeSevenFragment extends BaseFragment {
 
@@ -48,7 +49,11 @@ public class VolumeSevenFragment extends BaseFragment {
 
     public void setLHouseData(DesDaiMeasureABean.BodyBean bean) {
         lhousedata = bean;
-
+        if (lhousedata != null) {
+            ShowView(lhousedata);
+        } else {
+            Log.e("tag_SevenFragment", "lhousedata为空");
+        }
     }
 
     /**
@@ -72,9 +77,17 @@ public class VolumeSevenFragment extends BaseFragment {
 
     @Override
     public void initData() {
-       if(lhousedata!=null){
-           ShowView(lhousedata);
-       }
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (lhousedata != null) {
+            ShowView(lhousedata);
+        } else {
+            Log.e("tag_SevenFragment", "lhousedata为空");
+        }
     }
 
     private void ShowView(DesDaiMeasureABean.BodyBean info) {

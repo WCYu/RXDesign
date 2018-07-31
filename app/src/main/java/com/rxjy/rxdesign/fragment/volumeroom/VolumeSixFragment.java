@@ -2,14 +2,12 @@ package com.rxjy.rxdesign.fragment.volumeroom;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rxjy.rxdesign.R;
@@ -20,7 +18,6 @@ import com.rxjy.rxdesign.entity.DesDaiMeasureABean;
 import com.rxjy.rxdesign.fragment.utils.BaseFragment;
 import com.rxjy.rxdesign.utils.StringUtils;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +26,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.qqtheme.framework.picker.DatePicker;
 
-import static com.rxjy.rxdesign.utils.Constants.LF_NUM;
-
 /**
- * A simple {@link Fragment} subclass.
+ * 房源
  */
 public class VolumeSixFragment extends BaseFragment {
 
@@ -52,6 +47,20 @@ public class VolumeSixFragment extends BaseFragment {
     TextView tvNewJiaofangshijian;
     @Bind(R.id.tv_new_liangfangshijian)
     TextView tvNewLiangfangshijian;
+    @Bind(R.id.tv_liangfangdidian)
+    TextView tvLiangfangdidian;
+    @Bind(R.id.et_address)
+    EditText etAddress;
+    @Bind(R.id.et_zuqi)
+    EditText etZuqi;
+    @Bind(R.id.et_yuezujin)
+    EditText etYuezujin;
+    @Bind(R.id.et_jine)
+    EditText etJine;
+    @Bind(R.id.ly_zu)
+    LinearLayout lyZu;
+    @Bind(R.id.ly_mai)
+    LinearLayout lyMai;
 
     private String fangwuzhuangkuang;
     private String mianzuqi;
@@ -67,7 +76,11 @@ public class VolumeSixFragment extends BaseFragment {
 
     public void setLHouseData(DesDaiMeasureABean.BodyBean bean) {
         lhousedata = bean;
-
+        if (lhousedata != null) {
+            ShowView(lhousedata);
+        } else {
+            Log.e("tag_SixFragment", "lhousedata为空");
+        }
     }
 
     /**
@@ -93,8 +106,16 @@ public class VolumeSixFragment extends BaseFragment {
     public void initData() {
         activity = (DesDaiMeasureActivity) getActivity();
         initAddData();
-//        etNewMianji.addTextChangedListener(new MyEditListener(etNewMianji));
-//        etNewBuildmianji.addTextChangedListener(new MyEditListener(etNewBuildmianji));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (lhousedata != null) {
+            ShowView(lhousedata);
+        } else {
+            Log.e("tag_SixFragment", "lhousedata为空");
+        }
     }
 
     /**
@@ -107,11 +128,10 @@ public class VolumeSixFragment extends BaseFragment {
 
     private void initAddData() {
         housestatuslist = new ArrayList<>();
+        housestatuslist.add("请选择");
         housestatuslist.add("毛坯房");
-        housestatuslist.add("清水房");
-        housestatuslist.add("旧房改造");
-        housestatuslist.add("翻新");
-        housestatuslist.add("精装房");
+        housestatuslist.add("全拆全改");
+        housestatuslist.add("局部改造");
 
         norentlist = new ArrayList<>();
         norentlist.add("一个月内");
@@ -120,13 +140,16 @@ public class VolumeSixFragment extends BaseFragment {
         norentlist.add("无");
 
         makedealtypelist = new ArrayList<>();
+        makedealtypelist.add("请选择");
         makedealtypelist.add("租");
         makedealtypelist.add("买");
         makedealtypelist.add("自建");
 
         housefromstatuslist = new ArrayList<>();
+        housefromstatuslist.add("请选择");
         housefromstatuslist.add("已定");
         housefromstatuslist.add("未定");
+        housefromstatuslist.add("订金");
 
         initShow();
     }
@@ -137,77 +160,88 @@ public class VolumeSixFragment extends BaseFragment {
     int housestatusm, norenttimem, makedealtypem, housefromstatusm;
 
     private void initShow() {
-        tgvHousestatus.setTvType("房屋状况");
+        tgvHousestatus.setTvType("现状");
         tgvHousestatus.setGvLines(4);
         tgvHousestatus.setGvData(getActivity(), housestatuslist);
+
+
+        tgvNorenttime.setTvType("免租期");
+        tgvNorenttime.setGvLines(4);
+        tgvNorenttime.setGvData(getActivity(), norentlist);
+
+
+        tgvMakedealtype.setTvType("成交类型");
+        tgvMakedealtype.setGvLines(4);
+        tgvMakedealtype.setGvData(getActivity(), makedealtypelist);
+
+
+        tgvHousefromstatus.setTvType("状态");
+        tgvHousefromstatus.setGvLines(4);
+        tgvHousefromstatus.setGvData(getActivity(), housefromstatuslist);
+
+        checkListener();
+    }
+
+    private void checkListener() {
         tgvHousestatus.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//现状
                 if (housestatusm != 1) {
                     housestatusm = 1;
-                    addMoney();
                 }
                 activity.savedatabean.setCa_HousingType(position + 1 + "");
             }
         });
 
-        tgvNorenttime.setTvType("免租期");
-        tgvNorenttime.setGvLines(4);
-        tgvNorenttime.setGvData(getActivity(), norentlist);
         tgvNorenttime.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//免租期
                 if (norenttimem != 1) {
                     norenttimem = 1;
-                    addMoney();
                 }
                 activity.savedatabean.setCa_RentFreeDate(position + 1 + "");
             }
         });
 
-        tgvMakedealtype.setTvType("成交类型");
-        tgvMakedealtype.setGvLines(4);
-        tgvMakedealtype.setGvData(getActivity(), makedealtypelist);
         tgvMakedealtype.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//成交类型
                 if (makedealtypem != 1) {
                     makedealtypem = 1;
-                    addMoney();
+                }
+                String type = makedealtypelist.get(position);
+                if (type.equals("租")) {
+                    lyMai.setVisibility(View.GONE);
+                    lyZu.setVisibility(View.VISIBLE);
+                } else if (type.equals("买")) {
+                    lyMai.setVisibility(View.VISIBLE);
+                    lyZu.setVisibility(View.GONE);
+                } else {
+                    lyMai.setVisibility(View.GONE);
+                    lyZu.setVisibility(View.GONE);
                 }
                 activity.savedatabean.setCa_TransactionType(position + 1 + "");
             }
         });
 
-        tgvHousefromstatus.setTvType("房源状态");
-        tgvHousefromstatus.setGvLines(4);
-        tgvHousefromstatus.setGvData(getActivity(), housefromstatuslist);
         tgvHousefromstatus.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//状态
                 if (housefromstatusm != 1) {
                     housefromstatusm = 1;
-                    addMoney();
                 }
                 activity.savedatabean.setCa_AvailabilityStatus(position + 1 + "");
             }
         });
 
-//        mPresenter.GetNewSix(clientInfo.getCi_rwdid());
-        if (lhousedata != null) {
-            ShowView(lhousedata);
-        }
     }
 
     private void ShowView(DesDaiMeasureABean.BodyBean info) {
-        moneynum = activity.moneynum;
         if (!StringUtils.isEmpty(info.getCi_Area())) {
-            mianjim = 1;
             etNewMianji.setText(info.getCi_Area());
         }
 
         if (!StringUtils.isEmpty(info.getCi_BuildingArea())) {
-            buildmianji = 1;
             etNewBuildmianji.setText(info.getCi_BuildingArea());
         }
 
@@ -241,7 +275,16 @@ public class VolumeSixFragment extends BaseFragment {
             makedealtypem = 1;
             int position = Integer.parseInt(info.getCa_TransactionType());
             tgvMakedealtype.setContents(makedealtypelist.get(position - 1), position - 1);
-
+            if (makedealtypelist.get(position - 1).equals("租")) {
+                lyMai.setVisibility(View.GONE);
+                lyZu.setVisibility(View.VISIBLE);
+            } else if (makedealtypelist.get(position - 1).equals("买")) {
+                lyMai.setVisibility(View.VISIBLE);
+                lyZu.setVisibility(View.GONE);
+            } else {
+                lyMai.setVisibility(View.GONE);
+                lyZu.setVisibility(View.GONE);
+            }
         }
 
         if (info.getCa_AvailabilityStatus() != null && info.getCa_AvailabilityStatus().length() > 0) {
@@ -273,7 +316,7 @@ public class VolumeSixFragment extends BaseFragment {
     private String liangfangshijian;
     private int jiaofangshijianm, liangfangshijianm;
 
-    @OnClick({R.id.tv_new_jiaofangshijian, R.id.tv_new_liangfangshijian})
+    @OnClick({R.id.tv_new_jiaofangshijian, R.id.tv_new_liangfangshijian, R.id.tv_liangfangdidian})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_new_jiaofangshijian:
@@ -288,7 +331,6 @@ public class VolumeSixFragment extends BaseFragment {
                         activity.savedatabean.setCa_LaunchTime(jiaofangshijian);
                         if (jiaofangshijianm != 1) {
                             jiaofangshijianm = 1;
-                            addMoney();
                         }
 
                     }
@@ -307,129 +349,14 @@ public class VolumeSixFragment extends BaseFragment {
                         activity.savedatabean.setCa_MeasureDate(liangfangshijian);
                         if (liangfangshijianm != 1) {
                             liangfangshijianm = 1;
-                            addMoney();
                         }
                     }
                 });
                 Picker.show();
                 break;
+            case R.id.tv_liangfangdidian://量房地址
+
+                break;
         }
-    }
-
-    private class MyEditListener implements TextWatcher {
-
-        private EditText edittext;
-
-        public MyEditListener(EditText edittext) {
-            super();
-            this.edittext = edittext;
-        }
-
-        @Override
-        public void afterTextChanged(Editable arg0) {
-            // TODO Auto-generated method stub
-            int lengths = arg0.length();
-            switch (edittext.getId()) {
-                case R.id.et_new_mianji:
-                    editchanges(lengths, 0);
-                    if (lengths > 0) {
-                        area = edittext.getText().toString().trim();
-                    } else {
-                        area = "";
-                    }
-                    activity.savedatabean.setCi_Area(area);
-                    break;
-                case R.id.et_new_buildmianji:
-                    editchanges(lengths, 1);
-                    if (lengths > 0) {
-                        buildarea = edittext.getText().toString().trim();
-                    } else {
-                        buildarea = "";
-                    }
-                    activity.savedatabean.setCi_BuildingArea(buildarea);
-                    break;
-            }
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-                                      int arg3) {
-            // TODO Auto-generated method stub
-        }
-
-        @Override
-        public void onTextChanged(CharSequence arg0, int arg1, int arg2,
-                                  int arg3) {
-            // TODO Auto-generated method stub
-        }
-    }
-
-    int mianjim, buildmianji;
-
-    /**
-     * 输入框改变后金钱的变化
-     */
-    private void editchanges(int length, int type) {
-        Log.e("length" + length, "type" + type);
-        if (length > 0) {
-            switch (type) {
-                case 0:
-                    if (mianjim != 1) {
-                        mianjim = 1;
-                        addMoney();
-                    }
-                    break;
-                case 1:
-                    if (buildmianji != 1) {
-                        buildmianji = 1;
-                        addMoney();
-                    }
-                    break;
-            }
-        } else {
-            switch (type) {
-                case 0:
-                    mianjim = 0;
-                    noaddMoney();
-                    break;
-                case 1:
-                    buildmianji = 0;
-                    noaddMoney();
-                    break;
-            }
-        }
-    }
-
-    //显示金额（金额=总金额/96*个数 ）
-    double allmoney;
-    BigDecimal bigDecimal;
-    double showmoney;
-    int moneynum;//当前金额对应的个数
-
-    private void addMoney() {
-        moneynum = moneynum + 1;
-        Log.e("个数；", moneynum + "");
-        Log.e("金额是+；", lhousedata.getJDMoney() + "");
-        allmoney = Double.parseDouble(lhousedata.getJDMoney());
-        showmoney = allmoney / LF_NUM * moneynum;
-        bigDecimal = new BigDecimal(showmoney);
-        showmoney = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        activity.money = showmoney;
-        Log.e("金额；", activity.money + "");
-        activity.setMoney(activity.money);
-        activity.setMoneynum(moneynum);
-    }
-
-    private void noaddMoney() {
-        moneynum = moneynum - 1;
-        Log.e("个数；", moneynum + "");
-        allmoney = Double.parseDouble(lhousedata.getJDMoney());
-        showmoney = allmoney / LF_NUM * moneynum;
-        bigDecimal = new BigDecimal(showmoney);
-        showmoney = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        activity.money = showmoney;
-        Log.e("金额；", activity.money + "");
-        activity.setMoney(activity.money);
-        activity.setMoneynum(moneynum);
     }
 }

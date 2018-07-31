@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.bigkoo.pickerview.OptionsPickerView;
 import com.rxjy.rxdesign.R;
 import com.rxjy.rxdesign.activity.home.DesDaiMeasureActivity;
 import com.rxjy.rxdesign.custom.TextGridview;
@@ -25,11 +27,12 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.rxjy.rxdesign.utils.Constants.LF_NUM;
 
 /**
- * A simple {@link Fragment} subclass.
+ * 客户
  */
 public class VolumeEightFragment extends BaseFragment {
 
@@ -47,6 +50,16 @@ public class VolumeEightFragment extends BaseFragment {
     TextGridview tgvAttention;
     @Bind(R.id.tgv_character)
     TextGridview tgvCharacter;
+    @Bind(R.id.tv_zhiwu)
+    TextView tvZhiwu;
+    @Bind(R.id.tv_beijing)
+    TextView tvBeijing;
+    @Bind(R.id.tv_juese)
+    TextView tvJuese;
+    @Bind(R.id.tgv_juece)
+    TextGridview tgvJuece;
+    @Bind(R.id.tgv_chnegyi)
+    TextGridview tgvChnegyi;
 
     private String kehuxingming;
     private String shenfen;
@@ -59,11 +72,16 @@ public class VolumeEightFragment extends BaseFragment {
     //量房详情信息
     private DesDaiMeasureABean.BodyBean lhousedata;
     private DesDaiMeasureActivity activity;
+    private OptionsPickerView zhiWuPV;
+    private OptionsPickerView beiJingPV;
+    private OptionsPickerView jueSePV;
 
     public void setLHouseData(DesDaiMeasureABean.BodyBean bean) {
         lhousedata = bean;
         if (lhousedata != null) {
             ShowView(lhousedata);
+        } else {
+            Log.e("tag_EightFragment", "lhousedata为空");
         }
     }
 
@@ -96,16 +114,23 @@ public class VolumeEightFragment extends BaseFragment {
         super.onResume();
         if (lhousedata != null) {
             ShowView(lhousedata);
+        } else {
+            Log.e("tag_EightFragment", "lhousedata为空");
         }
     }
 
     //展示添加的源数据
-    private List<String> agelist;
-    private List<String> sexlist;
-    private List<String> contractlist;
-    private List<String> identitylist;
-    private List<String> attentionlist;
-    private List<String> characterlist;
+    private ArrayList<String> agelist;
+    private ArrayList<String> sexlist;
+    private ArrayList<String> contractlist;
+    private ArrayList<String> identitylist;
+    private ArrayList<String> attentionlist;
+    private ArrayList<String> characterlist;
+    private ArrayList<String> juecelist;
+    private ArrayList<String> chengyilist;
+    private ArrayList<String> zhiwulist;
+    private ArrayList<String> beijinglist;
+    private ArrayList<String> jueselist;
 
     private void initAddData() {
         agelist = new ArrayList<>();
@@ -149,6 +174,45 @@ public class VolumeEightFragment extends BaseFragment {
         characterlist.add("慢性子");
         characterlist.add("矫情");
         characterlist.add("纠结");
+
+        zhiwulist = new ArrayList<>();
+        zhiwulist.add("请选择");
+        zhiwulist.add("新政");
+        zhiwulist.add("副总");
+        zhiwulist.add("老板");
+        zhiwulist.add("老板助理");
+        zhiwulist.add("合伙人");
+        zhiwulist.add("财务");
+        zhiwulist.add("无");
+
+        beijinglist = new ArrayList<>();
+        beijinglist.add("请选择");
+        beijinglist.add("个体户");
+        beijinglist.add("白手起家");
+        beijinglist.add("职场精英");
+        beijinglist.add("霸道总裁");
+        beijinglist.add("暴发户");
+        beijinglist.add("富二代");
+        beijinglist.add("海归派");
+        beijinglist.add("公务员");
+        beijinglist.add("国企高层");
+        beijinglist.add("外企高层");
+        beijinglist.add("文艺范");
+
+        jueselist = new ArrayList<>();
+        jueselist.add("请选择");
+        jueselist.add("传话人");
+        jueselist.add("经办人");
+        jueselist.add("决策人");
+
+        juecelist = new ArrayList<>();
+        juecelist.add("有");
+        juecelist.add("无");
+
+        chengyilist = new ArrayList<>();
+        chengyilist.add("高");
+        chengyilist.add("低");
+
         initShow();
     }
 
@@ -159,91 +223,115 @@ public class VolumeEightFragment extends BaseFragment {
         tgvAge.setTvType("年龄");
         tgvAge.setGvLines(4);
         tgvAge.setGvData(getActivity(), agelist);
+
+        tgvSex.setTvType("性别");
+        tgvSex.setGvLines(4);
+        tgvSex.setGvData(getActivity(), sexlist);
+
+
+        tgvContract.setTvType("合同负责人");
+        tgvContract.setGvLines(4);
+        tgvContract.setGvData(getActivity(), contractlist);
+
+        tgvIdentity.setTvType("身份");
+        tgvIdentity.setGvLines(4);
+
+        tgvAttention.setTvType("注重");
+        tgvAttention.setGvLines(4);
+        tgvAttention.setGvData(getActivity(), attentionlist);
+
+        tgvCharacter.setTvType("性格");
+        tgvCharacter.setGvLines(4);
+        tgvCharacter.setGvData(getActivity(), characterlist);
+
+        tgvJuece.setTvType("决策权");
+        tgvJuece.setGvLines(4);
+        tgvJuece.setGvData(getActivity(), juecelist);
+
+        tgvChnegyi.setTvType("诚意度");
+        tgvChnegyi.setGvLines(4);
+        tgvChnegyi.setGvData(getActivity(), chengyilist);
+
+        checkListener();
+    }
+
+    private void checkListener() {
         tgvAge.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//年龄
                 if (agem != 1) {
                     agem = 1;
-                    addMoney();
                 }
                 activity.savedatabean.setCi_proAge(position + 1 + "");
             }
         });
 
-        tgvSex.setTvType("性别");
-        tgvSex.setGvLines(4);
-        tgvSex.setGvData(getActivity(), sexlist);
         tgvSex.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//性别
                 if (sexm != 1) {
                     sexm = 1;
-                    addMoney();
                 }
                 activity.savedatabean.setCi_proSex(position + 1 + "");
             }
         });
 
-        tgvContract.setTvType("合同负责人");
-        tgvContract.setGvLines(4);
-        tgvContract.setGvData(getActivity(), contractlist);
         tgvContract.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//合同负责人
                 if (contractm != 1) {
                     contractm = 1;
-                    addMoney();
                 }
                 activity.savedatabean.setCa_ContractPerson(position + 1 + "");
             }
         });
 
-        tgvIdentity.setTvType("身份");
-        tgvIdentity.setGvLines(4);
         tgvIdentity.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//身份
                 if (identitym != 1) {
                     identitym = 1;
-                    addMoney();
                 }
                 activity.savedatabean.setCa_proHeadIdentity(position + 1 + "");
             }
         });
 
-        tgvAttention.setTvType("注重");
-        tgvAttention.setGvLines(4);
-        tgvAttention.setGvData(getActivity(), attentionlist);
         tgvAttention.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//注重
                 if (attentionm != 1) {
                     attentionm = 1;
-                    addMoney();
                 }
                 activity.savedatabean.setCa_NoteFocus(attentionlist.get(position));
             }
         });
 
-        tgvCharacter.setTvType("性格");
-        tgvCharacter.setGvLines(4);
-        tgvCharacter.setGvData(getActivity(), characterlist);
         tgvCharacter.tochoose(new TextGridview.Choose() {
             @Override
-            public void tochoose(int position) {//改变钱数
+            public void tochoose(int position) {//性格
                 if (characterm != 1) {
                     characterm = 1;
-                    addMoney();
                 }
                 activity.savedatabean.setCa_proHeadCharacter(characterlist.get(position));
             }
         });
+
+        tgvJuece.tochoose(new TextGridview.Choose() {
+            @Override
+            public void tochoose(int position) {//决策
+            }
+        });
+
+        tgvChnegyi.tochoose(new TextGridview.Choose() {
+            @Override
+            public void tochoose(int position) {//诚意
+            }
+        });
+
     }
 
     private void ShowView(DesDaiMeasureABean.BodyBean info) {
-        moneynum = activity.moneynum;
         if (!StringUtils.isEmpty(info.getCi_proHead())) {
-            kehuxingmingm = 1;
             etNewKehuxingming.setText(info.getCi_proHead());
         }
 
@@ -309,101 +397,42 @@ public class VolumeEightFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
-    private String customername = "";
-
-    private class MyEditListener implements TextWatcher {
-
-        private EditText edittext;
-
-        public MyEditListener(EditText edittext) {
-            super();
-            this.edittext = edittext;
-        }
-
-        @Override
-        public void afterTextChanged(Editable arg0) {
-            // TODO Auto-generated method stub
-            int lengths = arg0.length();
-            switch (edittext.getId()) {
-                case R.id.et_new_kehuxingming:
-                    editchanges(lengths, 0);
-                    if (lengths > 0) {
-                        customername = edittext.getText().toString().trim();
-                    } else {
-                        customername = "";
+    @OnClick({R.id.tv_zhiwu, R.id.tv_beijing, R.id.tv_juese})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_zhiwu://职务
+                zhiWuPV = new OptionsPickerView.Builder(getActivity(), new OptionsPickerView.OnOptionsSelectListener() {
+                    @Override
+                    public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                        tvZhiwu.setText(zhiwulist.get(options1));
+                        tvZhiwu.setTextColor(getActivity().getResources().getColor(R.color.textblack));
                     }
-                    activity.savedatabean.setCi_proHead(customername);
-                    break;
-            }
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-                                      int arg3) {
-            // TODO Auto-generated method stub
-        }
-
-        @Override
-        public void onTextChanged(CharSequence arg0, int arg1, int arg2,
-                                  int arg3) {
-            // TODO Auto-generated method stub
-        }
-    }
-
-    int kehuxingmingm;
-
-    /**
-     * 输入框改变后金钱的变化
-     */
-    private void editchanges(int length, int type) {
-        Log.e("length" + length, "type" + type);
-        if (length > 0) {
-            switch (type) {
-                case 0:
-                    if (kehuxingmingm != 1) {
-                        kehuxingmingm = 1;
-                        addMoney();
+                }).build();
+                zhiWuPV.setPicker(zhiwulist);
+                zhiWuPV.show();
+                break;
+            case R.id.tv_beijing://背景
+                beiJingPV = new OptionsPickerView.Builder(getActivity(), new OptionsPickerView.OnOptionsSelectListener() {
+                    @Override
+                    public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                        tvBeijing.setText(beijinglist.get(options1));
+                        tvBeijing.setTextColor(getActivity().getResources().getColor(R.color.textblack));
                     }
-                    break;
-            }
-        } else {
-            switch (type) {
-                case 0:
-                    kehuxingmingm = 0;
-                    noaddMoney();
-                    break;
-            }
+                }).build();
+                beiJingPV.setPicker(beijinglist);
+                beiJingPV.show();
+                break;
+            case R.id.tv_juese://角色
+                jueSePV = new OptionsPickerView.Builder(getActivity(), new OptionsPickerView.OnOptionsSelectListener() {
+                    @Override
+                    public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                        tvJuese.setText(jueselist.get(options1));
+                        tvJuese.setTextColor(getActivity().getResources().getColor(R.color.textblack));
+                    }
+                }).build();
+                jueSePV.setPicker(jueselist);
+                jueSePV.show();
+                break;
         }
     }
-
-    //显示金额（金额=总金额/96*个数 ）
-    double allmoney;
-    BigDecimal bigDecimal;
-    double showmoney;
-    int moneynum;//当前金额对应的个数
-
-    private void addMoney() {
-        moneynum = moneynum + 1;
-        allmoney = Double.parseDouble(lhousedata.getJDMoney());
-        showmoney = allmoney / LF_NUM * moneynum;
-        bigDecimal = new BigDecimal(showmoney);
-        showmoney = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        activity.money = showmoney;
-        activity.setMoney(activity.money);
-        activity.setMoneynum(moneynum);
-    }
-
-    private void noaddMoney() {
-        moneynum = moneynum - 1;
-        Log.e("个数；", moneynum + "");
-        allmoney = Double.parseDouble(lhousedata.getJDMoney());
-        showmoney = allmoney / LF_NUM * moneynum;
-        bigDecimal = new BigDecimal(showmoney);
-        showmoney = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        activity.money = showmoney;
-        Log.e("金额；", activity.money + "");
-        activity.setMoney(activity.money);
-        activity.setMoneynum(moneynum);
-    }
-
 }

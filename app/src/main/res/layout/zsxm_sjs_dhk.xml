@@ -35,7 +35,7 @@
                 android:layout_margin="20px"
                 android:layout_weight="1"
                 android:background="@drawable/back_shi_bai"
-                android:padding="40px">
+                android:padding="20px">
 
                 <TextView
                     android:id="@+id/sjs_item_tv_zsxm_res"

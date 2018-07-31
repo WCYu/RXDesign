@@ -40,10 +40,13 @@ public class PathUrl {
     public static String FADATAURL = DES_API_LHSUBMIT + "api/program/getProjectBrief";//温特斯获取方案说明
     public static String FAIMGURL = DES_API_LHSUBMIT + "api/program/getProgrammerAPP";//温特斯获取方案图片
     public static String WTSSMLOGINURL = DES_API_LHSUBMIT + "bloc/cduan/PhoneLoginController";//温特斯扫码登陆
+    public static String LFIMGURL = DES_API_LHSUBMIT + "api/DWorksDetail/GetAllImages";//获取量房图片
 
     //温特斯量房单号获取
     public static String GETDANHAOURL = DES_API_LH + "IDC/GetOrderNumber";//获取温特斯单号
     public static String JFINFOURL = DES_API_LH + "JTRenShi/APP_RS_GetIntegralPlate";
+    public static String QYADDRESSURL = DES_API_LH + "Building/GetBuildingArea";//获取办公地址前段
+    public static String QYADDRESSTWOURL = DES_API_LH + "Building/GetBuildingBusiness";//获取办公地址后两段
 
     //温特斯红包获取  GetAPPRedPacket   RedBagCount
     public static String WTSREDLISTURL = DES_API_WTS + "LocalTask/GetAPPRedPacket";//获取红包列表

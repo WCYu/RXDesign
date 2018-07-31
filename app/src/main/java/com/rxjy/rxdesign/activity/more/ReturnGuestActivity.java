@@ -467,31 +467,17 @@ public class ReturnGuestActivity extends BaseActivity {
             @Override
             public void success(String data) {
                 Log.e("tag_获取项目类型", data);
-//                try {
-//                    JSONObject jsonObject = new JSONObject(data);
-//                    String statusMsg = jsonObject.getString("StatusMsg");
-//                    int statusCode = jsonObject.getInt("StatusCode");
-//                    if (statusCode == 0) {
                 ProjectTypeBean info = JSONUtils.toObject(data, ProjectTypeBean.class);
                 ArrayList<ProjectTypeBean.FatherDataBean> body = info.getBody();
-//                Log.e("项目类型", body.size() + "");
                 protypelist.addAll(body);
                 for (ProjectTypeBean.FatherDataBean fatherDataBean : body) {
-//                            Log.e("项目类型",fatherDataBean.getMingCheng());
                     protypefulist.add(fatherDataBean.getMingCheng());
                     List<String> child = new ArrayList<>();
                     for (ProjectTypeBean.FatherDataBean.SonDataBean childbean : fatherDataBean.getZiji()) {
                         child.add(childbean.getMingCheng());
-//                                Log.e("项目名称",childbean.getMingCheng());
                     }
                     protypezilist.add(child);
                 }
-//                    } else {
-//                        ToastUtil.getInstance().toastCentent(statusMsg);
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
             }
 
             @Override

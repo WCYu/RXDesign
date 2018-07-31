@@ -173,7 +173,6 @@ public class VolumeThreeFragment extends BaseFragment {
             public void tochoose(int position) {//改变钱数
                 if (projectattributem != 1) {
                     projectattributem = 1;
-                    addMoney();
                 }
                 switch (position) {
                     case 0:
@@ -206,7 +205,6 @@ public class VolumeThreeFragment extends BaseFragment {
             public void tochoose(int position) {//改变钱数
                 if (demandstylem != 1) {
                     demandstylem = 1;
-                    addMoney();
                 }
                 activity.savedatabean.setCa_IntentionalStyle(demandstyle.get(position));
             }
@@ -220,7 +218,6 @@ public class VolumeThreeFragment extends BaseFragment {
             public void tochoose(int position) {//改变钱数
                 if (zhaobiaom != 1) {
                     zhaobiaom = 1;
-                    addMoney();
                 }
                 activity.savedatabean.setCa_InviteTenders(yesnolist.get(position));
             }
@@ -234,7 +231,6 @@ public class VolumeThreeFragment extends BaseFragment {
             public void tochoose(int position) {//改变钱数
                 if (fengshuim != 1) {
                     fengshuim = 1;
-                    addMoney();
                 }
                 switch (position) {
                     case 0:
@@ -255,7 +251,6 @@ public class VolumeThreeFragment extends BaseFragment {
             public void tochoose(int position) {//改变钱数
                 if (softm != 1) {
                     softm = 1;
-                    addMoney();
                 }
                 switch (position) {
                     case 0:
@@ -276,7 +271,6 @@ public class VolumeThreeFragment extends BaseFragment {
             public void tochoose(int position) {//改变钱数
                 if (intelligentweakm != 1) {
                     intelligentweakm = 1;
-                    addMoney();
                 }
                 switch (position) {
                     case 0:
@@ -296,7 +290,6 @@ public class VolumeThreeFragment extends BaseFragment {
             public void tochoose(int position) {//改变钱数
                 if (advancePayment != 1) {
                     advancePayment = 1;
-                    addMoney();
                 }
                 activity.savedatabean.setCi_advancePayment(yesnolist.get(position));
             }
@@ -310,66 +303,7 @@ public class VolumeThreeFragment extends BaseFragment {
 
     int zhuangxiuyusuanm, gongqim, liangfangdizhim, kongjianxuqium;
 
-    /**
-     * 输入框改变后金钱的变化
-     */
-    private void editchanges(int length, int type) {
-        Log.e("length" + length, "type" + type);
-        if (length > 0) {
-            switch (type) {
-                case 0:
-                    if (zhuangxiuyusuanm != 1) {
-                        zhuangxiuyusuanm = 1;
-                        addMoney();
-                    }
-                    break;
-                case 1:
-                    if (gongqim != 1) {
-                        gongqim = 1;
-                        addMoney();
-                    }
-                    break;
-                case 2:
-                    if (liangfangdizhim != 1) {
-                        liangfangdizhim = 1;
-                        addMoney();
-                    }
-                    break;
-                case 3:
-                    if (kongjianxuqium != 1) {
-                        kongjianxuqium = 1;
-                        addMoney();
-                    }
-                    break;
-            }
-        } else {
-            switch (type) {
-                case 0:
-                    zhuangxiuyusuanm = 0;
-                    Log.e("jianle", "0");
-                    noaddMoney();
-                    break;
-                case 1:
-                    gongqim = 0;
-                    Log.e("jianle", "1");
-                    noaddMoney();
-                    break;
-                case 2:
-                    liangfangdizhim = 0;
-                    Log.e("jianle", "2");
-                    noaddMoney();
-                    break;
-                case 3:
-                    kongjianxuqium = 0;
-                    Log.e("jianle", "3");
-                    noaddMoney();
-                    break;
-            }
-        }
-    }
-
     private void ShowView(DesDaiMeasureABean.BodyBean bean) {
-        moneynum = activity.moneynum;
 
         if (!StringUtils.isEmpty(bean.getCi_DecorationAddress())) {
             liangfangdizhim = 1;
@@ -492,38 +426,6 @@ public class VolumeThreeFragment extends BaseFragment {
 
     }
 
-    double allmoney;
-    BigDecimal bigDecimal;
-    double showmoney;
-    int moneynum;//当前金额对应的个数
-
-    private void addMoney() {
-        moneynum = moneynum + 1;
-        Log.e("个数；", moneynum + "");
-        Log.e("金额是+；", lhousedata.getJDMoney() + "");
-        allmoney = Double.parseDouble(lhousedata.getJDMoney());
-        showmoney = allmoney / LF_NUM * moneynum;
-        bigDecimal = new BigDecimal(showmoney);
-        showmoney = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        activity.money = showmoney;
-        Log.e("金额；", activity.money + "");
-        activity.setMoney(activity.money);
-        activity.setMoneynum(moneynum);
-    }
-
-    private void noaddMoney() {
-        moneynum = moneynum - 1;
-        Log.e("个数；", moneynum + "");
-        allmoney = Double.parseDouble(lhousedata.getJDMoney());
-        showmoney = allmoney / LF_NUM * moneynum;
-        bigDecimal = new BigDecimal(showmoney);
-        showmoney = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        activity.money = showmoney;
-        Log.e("金额；", activity.money + "");
-        activity.setMoney(activity.money);
-        activity.setMoneynum(moneynum);
-    }
-
     @Override
     public void initAdapter() {
 
@@ -532,16 +434,6 @@ public class VolumeThreeFragment extends BaseFragment {
     @Override
     public void initLinstener() {
 
-    }
-
-    private String yumoneyss = "", jobtimess = "", lhouseaddressss = "", spaceneedss = "";
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
     }
 
     @OnClick({R.id.tv_measure_tenancy_term_end_time, R.id.tv_measure_tenancy_term_start_time})
@@ -569,79 +461,12 @@ public class VolumeThreeFragment extends BaseFragment {
                         tvMeasureTenancyTermStartTime.setText(caLeaseTermStart);
                         if (term_start_timem != 1) {
                             term_start_timem = 1;
-                            addMoney();
                         }
                         activity.savedatabean.setCa_DecorationDate(caLeaseTermStart);
                     }
                 });
                 startPicker.show();
                 break;
-        }
-    }
-
-    private class MyEditListener implements TextWatcher {
-
-        private EditText edittext;
-
-        public MyEditListener(EditText edittext) {
-            super();
-            this.edittext = edittext;
-        }
-
-        @Override
-        public void afterTextChanged(Editable arg0) {
-            // TODO Auto-generated method stub
-            int lengths = arg0.length();
-            switch (edittext.getId()) {
-                case R.id.et_new_zhuangxiuyusuan:
-                    editchanges(lengths, 0);
-                    if (lengths > 0) {
-                        yumoneyss = edittext.getText().toString().trim();
-                    } else {
-                        yumoneyss = "";
-                    }
-                    activity.savedatabean.setCa_DecBudgetPrice(yumoneyss);
-                    break;
-                case R.id.et_new_gongqi:
-                    editchanges(lengths, 1);
-                    if (lengths > 0) {
-                        jobtimess = edittext.getText().toString().trim();
-                    } else {
-                        jobtimess = "";
-                    }
-                    activity.savedatabean.setCa_ProjectTime(jobtimess);
-                    break;
-                case R.id.et_new_liangfangdizhi:
-                    editchanges(lengths, 2);
-                    if (lengths > 0) {
-                        lhouseaddressss = edittext.getText().toString().trim();
-                    } else {
-                        lhouseaddressss = "";
-                    }
-                    activity.savedatabean.setCi_DecorationAddress(lhouseaddressss);
-                    break;
-                case R.id.et_new_kongjianxuqiu:
-                    editchanges(lengths, 3);
-                    if (lengths > 0) {
-                        spaceneedss = edittext.getText().toString().trim();
-                    } else {
-                        spaceneedss = "";
-                    }
-                    activity.savedatabean.setCa_SpaceRequirement(spaceneedss);
-                    break;
-            }
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-                                      int arg3) {
-            // TODO Auto-generated method stub
-        }
-
-        @Override
-        public void onTextChanged(CharSequence arg0, int arg1, int arg2,
-                                  int arg3) {
-            // TODO Auto-generated method stub
         }
     }
 

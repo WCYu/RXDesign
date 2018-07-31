@@ -3,35 +3,46 @@ package com.rxjy.rxdesign.fragment.volumeroom;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.OptionsPickerView;
 import com.rxjy.rxdesign.R;
 import com.rxjy.rxdesign.activity.home.DesDaiMeasureActivity;
+import com.rxjy.rxdesign.activity.more.ReturnGuestActivity;
+import com.rxjy.rxdesign.base.PathUrl;
 import com.rxjy.rxdesign.custom.TextGridview;
 import com.rxjy.rxdesign.entity.AllClientNewBean;
+import com.rxjy.rxdesign.entity.BGAddressBean;
 import com.rxjy.rxdesign.entity.DesDaiMeasureABean;
+import com.rxjy.rxdesign.entity.PersonBean;
+import com.rxjy.rxdesign.entity.ProjectTypeBean;
 import com.rxjy.rxdesign.fragment.utils.BaseFragment;
+import com.rxjy.rxdesign.utils.JSONUtils;
+import com.rxjy.rxdesign.utils.OkhttpUtils;
 import com.rxjy.rxdesign.utils.StringUtils;
+import com.rxjy.rxdesign.utils.ToastUtil;
 
-import java.math.BigDecimal;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.qqtheme.framework.picker.DatePicker;
 
-import static com.rxjy.rxdesign.utils.Constants.LF_NUM;
-
 /**
- * A simple {@link Fragment} subclass.
+ * 企业
  */
 public class VolumeNineFragment extends BaseFragment {
 
@@ -47,14 +58,29 @@ public class VolumeNineFragment extends BaseFragment {
     EditText etNewJingyingfanwei;
     @Bind(R.id.et_new_qiyewenhua)
     EditText etNewQiyewenhua;
+    @Bind(R.id.et_quancheng)
+    EditText etQuancheng;
+    @Bind(R.id.et_mianji)
+    EditText etMianji;
+    @Bind(R.id.et_zujin)
+    EditText etZujin;
+    @Bind(R.id.tv_bangongdidian)
+    TextView tvBangongdidian;
+    @Bind(R.id.et_address)
+    EditText etAddress;
+    @Bind(R.id.ly_isXinKai)
+    LinearLayout lyIsXinKai;
+    @Bind(R.id.tv_qytype)
+    TextView tvQytype;
 
-    private String qiyexingzhi;
-    private String qiyeguimo;
-    private String chenglidate;
-    private String qiyeshouciruzhu;
-    private String jingyingfanwei;
-    private String qiyewenhua;
     int Chenglishijianm;
+    List<String> protypefulist;
+    List<List<String>> protypezilist;
+    List<ProjectTypeBean.FatherDataBean> protypelist;
+    private OptionsPickerView ptypePV;
+    private OptionsPickerView bGAddressPV;
+
+    int ptypec = 0, ptypetwoc = 0, pshuxingc = 0, hstatec = 0, hfromsc = 0, chengjiaoc = 0;
 
     //量房详情信息
     private DesDaiMeasureABean.BodyBean lhousedata;
@@ -93,32 +119,8 @@ public class VolumeNineFragment extends BaseFragment {
     public void initData() {
         activity = (DesDaiMeasureActivity) getActivity();
         initAddData();
-//        etNewJingyingfanwei.addTextChangedListener(new MyEditListener(etNewJingyingfanwei));
-//        etNewQiyewenhua.addTextChangedListener(new MyEditListener(etNewQiyewenhua));
-//        rgNewQiyeguimo.setOnCheckedChangeListener(this);
-//        rgNewQiyexingzhi.setOnCheckedChangeListener(this);
-//        rgNewShouciruzhu.setOnCheckedChangeListener(this);
-
-        tvNewChenglishijian.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePicker Picker = new DatePicker(getActivity());
-                Picker.setRange(2017, 2100);//年份范围
-                Picker.setOnDatePickListener(new DatePicker.OnYearMonthDayPickListener() {
-                    @Override
-                    public void onDatePicked(String year, String month, String day) {
-                        chenglishijian = year + "-" + month + "-" + day;
-                        tvNewChenglishijian.setText(chenglishijian);
-                        if (Chenglishijianm != 1) {
-                            Chenglishijianm = 1;
-                            addMoney();
-                        }
-                        activity.savedatabean.setCa_EstablishmentTime(chenglishijian);
-                    }
-                });
-                Picker.show();
-            }
-        });
+        getQiYeType();
+        getBanGongAddress();
     }
 
     @Override
@@ -134,18 +136,20 @@ public class VolumeNineFragment extends BaseFragment {
     /**
      * 展示添加的源数据
      */
-    private List<String> enterpriselist;
-    private List<String> enterprisesizelist;
-    private List<String> firstinlist;
+    private ArrayList<String> enterpriselist;
+    private ArrayList<String> enterprisesizelist;
+    private ArrayList<String> firstinlist;
+    private ArrayList<String> bGAddresslist;
+    private ArrayList<Integer> bGAddressIDlist;
 
     private void initAddData() {
         enterpriselist = new ArrayList<>();
         enterpriselist.add("国企");
         enterpriselist.add("私企");
         enterpriselist.add("外企");
-//        enterpriselist.add("央企");
-//        enterpriselist.add("合资");
-//        enterpriselist.add("其他");
+        enterpriselist.add("央企");
+        enterpriselist.add("合资");
+        enterpriselist.add("其他");
 
         enterprisesizelist = new ArrayList<>();
         enterprisesizelist.add("30人以下");
@@ -157,6 +161,12 @@ public class VolumeNineFragment extends BaseFragment {
         firstinlist.add("是");
         firstinlist.add("否");
 
+        protypefulist = new ArrayList<>();
+        protypezilist = new ArrayList<>();
+        protypelist = new ArrayList<>();
+
+        bGAddresslist = new ArrayList<>();
+        bGAddressIDlist = new ArrayList<>();
         initShow();
     }
 
@@ -174,7 +184,6 @@ public class VolumeNineFragment extends BaseFragment {
             public void tochoose(int position) {//改变钱数
                 if (enterprisem != 1) {
                     enterprisem = 1;
-                    addMoney();
                 }
                 activity.savedatabean.setCa_EnterpriseNature(enterpriselist.get(position));
             }
@@ -188,7 +197,6 @@ public class VolumeNineFragment extends BaseFragment {
             public void tochoose(int position) {//改变钱数
                 if (enterprisesizem != 1) {
                     enterprisesizem = 1;
-                    addMoney();
                 }
                 activity.savedatabean.setCa_EnterprisesScale(enterprisesizelist.get(position));
             }
@@ -202,15 +210,18 @@ public class VolumeNineFragment extends BaseFragment {
             public void tochoose(int position) {//改变钱数
                 if (firstinm != 1) {
                     firstinm = 1;
-                    addMoney();
                 }
                 activity.savedatabean.setCa_ForeignEnterprises(firstinlist.get(position));
+                if (firstinlist.get(position).equals("否")) {
+                    lyIsXinKai.setVisibility(View.VISIBLE);
+                } else {
+                    lyIsXinKai.setVisibility(View.GONE);
+                }
             }
         });
     }
 
     private void ShowView(DesDaiMeasureABean.BodyBean info) {
-        moneynum = activity.moneynum;
 
         if (!StringUtils.isEmpty(info.getCa_EstablishmentTime())) {
             Chenglishijianm = 1;
@@ -219,11 +230,9 @@ public class VolumeNineFragment extends BaseFragment {
             }
         }
         if (!StringUtils.isEmpty(info.getCa_BusinessScope())) {
-            jingyingfanweim = 1;
             etNewJingyingfanwei.setText(info.getCa_BusinessScope());
         }
         if (!StringUtils.isEmpty(info.getCa_BusinessScope())) {
-            qiyewenhuam = 1;
             etNewQiyewenhua.setText(info.getCa_CorporateCulture());
         }
 
@@ -253,6 +262,11 @@ public class VolumeNineFragment extends BaseFragment {
             for (int i = 0; i < firstinlist.size(); i++) {
                 if (firstinlist.get(i).equals(info.getCa_ForeignEnterprises())) {
                     tgvFirstin.setContents(info.getCa_ForeignEnterprises(), i);
+                    if (info.getCa_ForeignEnterprises().equals("否")) {
+                        lyIsXinKai.setVisibility(View.VISIBLE);
+                    } else {
+                        lyIsXinKai.setVisibility(View.GONE);
+                    }
                     break;
                 }
             }
@@ -275,122 +289,143 @@ public class VolumeNineFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
-    private String fanwei = "", companywenhua = "";
-
-    private class MyEditListener implements TextWatcher {
-
-        private EditText edittext;
-
-        public MyEditListener(EditText edittext) {
-            super();
-            this.edittext = edittext;
-        }
-
-        @Override
-        public void afterTextChanged(Editable arg0) {
-            // TODO Auto-generated method stub
-            int lengths = arg0.length();
-            switch (edittext.getId()) {
-                case R.id.et_new_jingyingfanwei:
-                    editchanges(lengths, 0);
-                    if (lengths > 0) {
-                        fanwei = edittext.getText().toString().trim();
-                    } else {
-                        fanwei = "";
+    @OnClick({R.id.tv_qytype, R.id.tv_new_chenglishijian, R.id.tv_bangongdidian})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_qytype://企业类型
+                if (protypefulist != null && protypezilist != null) {
+                    ptypePV = new OptionsPickerView.Builder(getActivity(), new OptionsPickerView.OnOptionsSelectListener() {
+                        @Override
+                        public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                            tvQytype.setText(protypelist.get(options1).getMingCheng() + "-" + protypelist.get(options1).getZiji().get(options2).getMingCheng());
+                            tvQytype.setTextColor(getActivity().getResources().getColor(R.color.textblack));
+                            ptypec = Integer.parseInt(protypelist.get(options1).getID());
+                            ptypetwoc = Integer.parseInt(protypelist.get(options1).getZiji().get(options2).getID());
+                        }
+                    }).build();
+                    ptypePV.setPicker(protypefulist, protypezilist);
+                    ptypePV.show();
+                }
+                break;
+            case R.id.tv_new_chenglishijian://成立时间
+                DatePicker Picker = new DatePicker(getActivity());
+                Picker.setRange(2017, 2100);//年份范围
+                Picker.setOnDatePickListener(new DatePicker.OnYearMonthDayPickListener() {
+                    @Override
+                    public void onDatePicked(String year, String month, String day) {
+                        chenglishijian = year + "-" + month + "-" + day;
+                        tvNewChenglishijian.setText(chenglishijian);
+                        if (Chenglishijianm != 1) {
+                            Chenglishijianm = 1;
+                        }
+                        activity.savedatabean.setCa_EstablishmentTime(chenglishijian);
                     }
-                    activity.savedatabean.setCa_BusinessScope(fanwei);
-                    break;
-                case R.id.et_new_qiyewenhua:
-                    editchanges(lengths, 1);
-                    if (lengths > 0) {
-                        companywenhua = edittext.getText().toString().trim();
-                    } else {
-                        companywenhua = "";
-                    }
-                    activity.savedatabean.setCa_CorporateCulture(companywenhua);
-                    break;
-            }
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-                                      int arg3) {
-            // TODO Auto-generated method stub
-        }
-
-        @Override
-        public void onTextChanged(CharSequence arg0, int arg1, int arg2,
-                                  int arg3) {
-            // TODO Auto-generated method stub
+                });
+                Picker.show();
+                break;
+            case R.id.tv_bangongdidian://办公地点
+                if (bGAddresslist.size() > 0) {
+                    bGAddressPV = new OptionsPickerView.Builder(getActivity(), new OptionsPickerView.OnOptionsSelectListener() {
+                        @Override
+                        public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                            tvBangongdidian.setText(bGAddresslist.get(options1));
+                            tvBangongdidian.setTextColor(getActivity().getResources().getColor(R.color.textblack));
+                            getBanGongAddressTwo(bGAddressIDlist.get(options1));
+                        }
+                    }).build();
+                    bGAddressPV.setPicker(bGAddresslist);
+                    bGAddressPV.show();
+                } else {
+                    ToastUtil.getInstance().toastCentent("未获取到办公地址");
+                }
+                break;
         }
     }
 
-    int jingyingfanweim, qiyewenhuam;
+    public void getQiYeType() {//获取企业类型
+        Map map = new HashMap();
+        OkhttpUtils.doGet(getActivity(), PathUrl.GETXIANGMUTYPEURL, map, new OkhttpUtils.MyCall() {
+            @Override
+            public void success(String data) {
+                Log.e("tag_获取项目类型", data);
+                ProjectTypeBean info = JSONUtils.toObject(data, ProjectTypeBean.class);
+                ArrayList<ProjectTypeBean.FatherDataBean> body = info.getBody();
+                protypelist.addAll(body);
+                for (ProjectTypeBean.FatherDataBean fatherDataBean : body) {
+                    protypefulist.add(fatherDataBean.getMingCheng());
+                    List<String> child = new ArrayList<>();
+                    for (ProjectTypeBean.FatherDataBean.SonDataBean childbean : fatherDataBean.getZiji()) {
+                        child.add(childbean.getMingCheng());
+                    }
+                    protypezilist.add(child);
+                }
+            }
 
-    /**
-     * 输入框改变后金钱的变化
-     */
-    private void editchanges(int length, int type) {
-        if (length > 0) {
-            switch (type) {
-                case 0:
-                    if (jingyingfanweim != 1) {
-                        jingyingfanweim = 1;
-                        addMoney();
-                    }
-                    break;
-                case 1:
-                    if (qiyewenhuam != 1) {
-                        qiyewenhuam = 1;
-                        addMoney();
-                    }
-                    break;
+            @Override
+            public void error(String message) {
+                Log.e("tag_获取项目类型失败", message);
             }
-        } else {
-            switch (type) {
-                case 0:
-                    jingyingfanweim = 0;
-                    noaddMoney();
-                    break;
-                case 1:
-                    qiyewenhuam = 0;
-                    noaddMoney();
-                    break;
-            }
-        }
+        });
     }
 
-    //显示金额（金额=总金额/96*个数 ）
-    double allmoney;
-    BigDecimal bigDecimal;
-    double showmoney;
-    int moneynum;//当前金额对应的个数
+    public void getBanGongAddress() {//获取办公地址
+        Map map = new HashMap();
+        OkhttpUtils.doGet(getActivity(), PathUrl.QYADDRESSURL, map, new OkhttpUtils.MyCall() {
+            @Override
+            public void success(String data) {
+                Log.e("tag_获取办公地址", data);
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+                    int statusCode = jsonObject.getInt("StatusCode");
+                    if (statusCode == 1) {
+                        BGAddressBean info = JSONUtils.toObject(data, BGAddressBean.class);
+                        List<BGAddressBean.BodyBean> body = info.getBody();
+                        for (int i = 0; i < body.size(); i++) {
+                            bGAddresslist.add(body.get(i).getName());
+                            bGAddressIDlist.add(body.get(i).getId());
+                        }
+                    }
+                    Log.e("tag_获取数据", bGAddresslist.size() + "");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
 
-    private void addMoney() {
-        moneynum = moneynum + 1;
-        Log.e("个数；", moneynum + "");
-        Log.e("金额是+；", lhousedata.getJDMoney() + "");
-        allmoney = Double.parseDouble(lhousedata.getJDMoney());
-        showmoney = allmoney / LF_NUM * moneynum;
-        bigDecimal = new BigDecimal(showmoney);
-        showmoney = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        activity.money = showmoney;
-        Log.e("金额；", activity.money + "");
-        activity.setMoney(activity.money);
-        activity.setMoneynum(moneynum);
+            @Override
+            public void error(String message) {
+                Log.e("tag_获取办公地址失败", message);
+            }
+        });
     }
 
-    private void noaddMoney() {
-        moneynum = moneynum - 1;
-        Log.e("个数；", moneynum + "");
-        allmoney = Double.parseDouble(lhousedata.getJDMoney());
-        showmoney = allmoney / LF_NUM * moneynum;
-        bigDecimal = new BigDecimal(showmoney);
-        showmoney = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        activity.money = showmoney;
-        Log.e("金额；", activity.money + "");
-        activity.setMoney(activity.money);
-        activity.setMoneynum(moneynum);
+    public void getBanGongAddressTwo(int countryId) {//获取办公地址
+        Map map = new HashMap();
+        map.put("countryId", countryId);
+        OkhttpUtils.doGet(getActivity(), PathUrl.QYADDRESSTWOURL, map, new OkhttpUtils.MyCall() {
+            @Override
+            public void success(String data) {
+                Log.e("tag_获取办公地址后", data);
+//                try {
+//                    JSONObject jsonObject = new JSONObject(data);
+//                    int statusCode = jsonObject.getInt("StatusCode");
+//                    if (statusCode == 1) {
+//                        BGAddressBean info = JSONUtils.toObject(data, BGAddressBean.class);
+//                        List<BGAddressBean.BodyBean> body = info.getBody();
+//                        for (int i = 0; i < body.size(); i++) {
+//                            bGAddresslist.add(body.get(i).getName());
+//                        }
+//                    }
+//                    Log.e("tag_获取数据", bGAddresslist.size() + "");
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+            }
+
+            @Override
+            public void error(String message) {
+                Log.e("tag_获取办公地址后失败", message);
+            }
+        });
     }
 
 }
