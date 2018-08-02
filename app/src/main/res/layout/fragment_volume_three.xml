@@ -720,7 +720,6 @@
                         android:visibility="gone" />
 
                     <TextView
-
                         android:id="@+id/tv_measure_tenancy_term_start_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -730,7 +729,8 @@
                         android:gravity="right"
                         android:text="请选择"
                         android:textColor="@color/cor666"
-                        android:textSize="28px" />
+                        android:textSize="28px"
+                        android:visibility="gone" />
 
                 </RelativeLayout>
 

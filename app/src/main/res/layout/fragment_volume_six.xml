@@ -351,7 +351,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="月资金"
+                                android:text="月租金"
                                 android:textColor="@color/cor595757"
                                 android:textSize="28px" />
 
@@ -493,7 +493,7 @@
                         android:gravity="right"
                         android:text="请选择"
                         android:textColor="@color/cor595757"
-                        android:textSize="28px"/>
+                        android:textSize="28px" />
 
                 </RelativeLayout>
 
