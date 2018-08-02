@@ -10,16 +10,28 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.OptionsPickerView;
 import com.rxjy.rxdesign.R;
 import com.rxjy.rxdesign.activity.home.DesDaiMeasureActivity;
+import com.rxjy.rxdesign.base.PathUrl;
 import com.rxjy.rxdesign.custom.TextGridview;
 import com.rxjy.rxdesign.entity.AllClientNewBean;
+import com.rxjy.rxdesign.entity.BGAddressBean;
 import com.rxjy.rxdesign.entity.DesDaiMeasureABean;
+import com.rxjy.rxdesign.entity.ShangQuanBean;
 import com.rxjy.rxdesign.fragment.utils.BaseFragment;
+import com.rxjy.rxdesign.utils.JSONUtils;
+import com.rxjy.rxdesign.utils.OkhttpUtils;
 import com.rxjy.rxdesign.utils.StringUtils;
+import com.rxjy.rxdesign.utils.ToastUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -61,6 +73,14 @@ public class VolumeSixFragment extends BaseFragment {
     LinearLayout lyZu;
     @Bind(R.id.ly_mai)
     LinearLayout lyMai;
+    @Bind(R.id.tv_liangfangquyu)
+    TextView tvLiangfangquyu;
+    @Bind(R.id.ly_liangfangquyu)
+    LinearLayout lyLiangfangquyu;
+    @Bind(R.id.tv_liangfangshangquan)
+    TextView tvLiangfangshangquan;
+    @Bind(R.id.ly_liangfangshangquan)
+    LinearLayout lyLiangfangshangquan;
 
     private String fangwuzhuangkuang;
     private String mianzuqi;
@@ -73,6 +93,9 @@ public class VolumeSixFragment extends BaseFragment {
     //量房详情信息
     private DesDaiMeasureABean.BodyBean lhousedata;
     private DesDaiMeasureActivity activity;
+    private OptionsPickerView bGAddressPV;
+    private OptionsPickerView quYuPV;
+    private OptionsPickerView shangQuanPV;
 
     public void setLHouseData(DesDaiMeasureABean.BodyBean bean) {
         lhousedata = bean;
@@ -106,6 +129,7 @@ public class VolumeSixFragment extends BaseFragment {
     public void initData() {
         activity = (DesDaiMeasureActivity) getActivity();
         initAddData();
+        getBanGongAddress();
     }
 
     @Override
@@ -125,6 +149,12 @@ public class VolumeSixFragment extends BaseFragment {
     private List<String> norentlist;
     private List<String> makedealtypelist;
     private List<String> housefromstatuslist;
+
+    private ArrayList<String> bGAddresslist;
+    private ArrayList<Integer> bGAddressIDlist;
+    private ArrayList<String> quyulist;
+    private ArrayList<Integer> quyuIDlist;
+    private ArrayList<String> shangquanlist;
 
     private void initAddData() {
         housestatuslist = new ArrayList<>();
@@ -150,6 +180,12 @@ public class VolumeSixFragment extends BaseFragment {
         housefromstatuslist.add("已定");
         housefromstatuslist.add("未定");
         housefromstatuslist.add("订金");
+
+        bGAddresslist = new ArrayList<>();
+        bGAddressIDlist = new ArrayList<>();
+        quyulist = new ArrayList<>();
+        quyuIDlist = new ArrayList<>();
+        shangquanlist = new ArrayList<>();
 
         initShow();
     }
@@ -316,7 +352,7 @@ public class VolumeSixFragment extends BaseFragment {
     private String liangfangshijian;
     private int jiaofangshijianm, liangfangshijianm;
 
-    @OnClick({R.id.tv_new_jiaofangshijian, R.id.tv_new_liangfangshijian, R.id.tv_liangfangdidian})
+    @OnClick({R.id.tv_new_jiaofangshijian, R.id.tv_new_liangfangshijian, R.id.tv_liangfangdidian, R.id.tv_liangfangquyu, R.id.tv_liangfangshangquan})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_new_jiaofangshijian:
@@ -355,8 +391,147 @@ public class VolumeSixFragment extends BaseFragment {
                 Picker.show();
                 break;
             case R.id.tv_liangfangdidian://量房地址
+                if (bGAddresslist.size() > 0) {
+                    bGAddressPV = new OptionsPickerView.Builder(getActivity(), new OptionsPickerView.OnOptionsSelectListener() {
+                        @Override
+                        public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                            tvLiangfangdidian.setText(bGAddresslist.get(options1));
+                            tvLiangfangdidian.setTextColor(getActivity().getResources().getColor(R.color.textblack));
+                            lyLiangfangquyu.setVisibility(View.VISIBLE);
+                            getBanGongAddressTwo(bGAddressIDlist.get(options1));
+                        }
+                    }).build();
+                    bGAddressPV.setPicker(bGAddresslist);
+                    bGAddressPV.show();
+                } else {
+                    ToastUtil.getInstance().toastCentent("未获取到量房地址");
+                }
+                break;
+            case R.id.tv_liangfangquyu:
+                if (quyulist.size() > 0) {
+                    quYuPV = new OptionsPickerView.Builder(getActivity(), new OptionsPickerView.OnOptionsSelectListener() {
+                        @Override
+                        public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                            tvLiangfangquyu.setText(quyulist.get(options1));
+                            tvLiangfangquyu.setTextColor(getActivity().getResources().getColor(R.color.textblack));
+                            getBanGongAddressShangQuan(quyuIDlist.get(options1));
 
+                            lyLiangfangshangquan.setVisibility(View.VISIBLE);
+                        }
+                    }).build();
+                    quYuPV.setPicker(quyulist);
+                    quYuPV.show();
+                } else {
+                    ToastUtil.getInstance().toastCentent("未获取到区域地址");
+                }
+                break;
+            case R.id.tv_liangfangshangquan:
+                if (shangquanlist.size() > 0) {
+                    shangQuanPV = new OptionsPickerView.Builder(getActivity(), new OptionsPickerView.OnOptionsSelectListener() {
+                        @Override
+                        public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                            tvLiangfangshangquan.setText(shangquanlist.get(options1));
+                            tvLiangfangshangquan.setTextColor(getActivity().getResources().getColor(R.color.textblack));
+                        }
+                    }).build();
+                    shangQuanPV.setPicker(shangquanlist);
+                    shangQuanPV.show();
+                } else {
+                    ToastUtil.getInstance().toastCentent("未获取到商圈地址");
+                }
                 break;
         }
+    }
+
+    public void getBanGongAddress() {//获取办公地址
+        Map map = new HashMap();
+        OkhttpUtils.doGet(getActivity(), PathUrl.QYADDRESSURL, map, new OkhttpUtils.MyCall() {
+            @Override
+            public void success(String data) {
+                Log.e("tag_获取办公地址", data);
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+                    int statusCode = jsonObject.getInt("StatusCode");
+                    if (statusCode == 1) {
+                        BGAddressBean info = JSONUtils.toObject(data, BGAddressBean.class);
+                        List<BGAddressBean.BodyBean> body = info.getBody();
+                        for (int i = 0; i < body.size(); i++) {
+                            bGAddresslist.add(body.get(i).getName());
+                            bGAddressIDlist.add(body.get(i).getId());
+                        }
+                    }
+                    Log.e("tag_获取数据", bGAddresslist.size() + "");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void error(String message) {
+                Log.e("tag_获取办公地址失败", message);
+            }
+        });
+    }
+
+    public void getBanGongAddressTwo(int countryId) {//获取办公地址
+        Map map = new HashMap();
+        map.put("Id", countryId);
+        OkhttpUtils.doGet(getActivity(), PathUrl.QYADDRESSURL, map, new OkhttpUtils.MyCall() {
+            @Override
+            public void success(String data) {
+                Log.e("tag_获取区域地址", data);
+                try {
+                    quyulist.clear();
+                    quyuIDlist.clear();
+                    JSONObject jsonObject = new JSONObject(data);
+                    int statusCode = jsonObject.getInt("StatusCode");
+                    if (statusCode == 1) {
+                        BGAddressBean info = JSONUtils.toObject(data, BGAddressBean.class);
+                        List<BGAddressBean.BodyBean> body = info.getBody();
+                        for (int i = 0; i < body.size(); i++) {
+                            quyulist.add(body.get(i).getName());
+                            quyuIDlist.add(body.get(i).getId());
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void error(String message) {
+                Log.e("tag_获取区域地址后失败", message);
+            }
+        });
+    }
+
+    public void getBanGongAddressShangQuan(int countryId) {//获取办公地址
+        Map map = new HashMap();
+        map.put("countryId", countryId);
+        OkhttpUtils.doGet(getActivity(), PathUrl.QYADDRESSTWOURL, map, new OkhttpUtils.MyCall() {
+            @Override
+            public void success(String data) {
+                Log.e("tag_获取商圈地址", data);
+                try {
+                    shangquanlist.clear();
+                    JSONObject jsonObject = new JSONObject(data);
+                    int statusCode = jsonObject.getInt("StatusCode");
+                    if (statusCode == 1) {
+                        ShangQuanBean info = JSONUtils.toObject(data, ShangQuanBean.class);
+                        List<ShangQuanBean.BodyBean> body = info.getBody();
+                        for (int i = 0; i < body.size(); i++) {
+                            shangquanlist.add(body.get(i).getName());
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void error(String message) {
+                Log.e("tag_获取商圈地址后失败", message);
+            }
+        });
     }
 }

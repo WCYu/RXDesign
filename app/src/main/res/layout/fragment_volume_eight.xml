@@ -79,10 +79,11 @@
 
                         <TextView
                             android:id="@+id/tv_zhiwu"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:gravity="right"
                             android:text="请选择"
                             android:textColor="@color/cor595757"
                             android:textSize="28px" />
@@ -123,10 +124,11 @@
 
                         <TextView
                             android:id="@+id/tv_beijing"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:gravity="right"
                             android:text="请选择"
                             android:textColor="@color/cor595757"
                             android:textSize="28px" />
@@ -162,10 +164,11 @@
 
                         <TextView
                             android:id="@+id/tv_juese"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:gravity="right"
                             android:text="请选择"
                             android:textColor="@color/cor595757"
                             android:textSize="28px" />

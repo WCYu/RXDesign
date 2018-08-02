@@ -19,107 +19,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_protectmaterial"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_elevatoruse"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_constructiontime"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_publicareaprotect"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_propertyinsurance"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_firecompany"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_aircoldcompany"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_garbagetranscompany"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_blueprint"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20px"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@color/colorWhite"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:padding="20px">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="物业施工要求"
-                            android:textColor="@color/cor595757"
-                            android:textSize="28px" />
-
-                        <EditText
-                            android:id="@+id/et_new_wuyeshigongyaoqiu"
-                            android:layout_width="0px"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@null"
-                            android:gravity="right"
-                            android:hint="请输入"
-                            android:textColor="@color/cor595757"
-                            android:textColorHint="@color/line"
-                            android:textSize="28px" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -162,7 +61,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="二装经理电话"
+                        android:text="二装办/客服电话"
                         android:textColor="@color/cor595757"
                         android:textSize="28px" />
 
@@ -181,27 +80,348 @@
                         android:textSize="28px" />
 
                 </LinearLayout>
-                <!--空调消防维保单位-->
-                <com.rxjy.rxdesign.custom.TextGridview
-                    android:id="@+id/tgv_aircoldfixunit"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
 
-                </com.rxjy.rxdesign.custom.TextGridview>
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_elevatoruse"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_protectmaterial"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78px"
+                        android:layout_marginTop="20px"
+                        android:background="@color/colorWhite"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="围挡"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:id="@+id/tv_weidang"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="right"
+                            android:text="请选择"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <!--施工时间-->
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_constructiontime"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <!--空调维保单位-->
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_aircoldcompany"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/ly_kongtiaoname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorWhite"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="空调单位名称"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <EditText
+                            android:id="@+id/et_kongtiaoname"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="right"
+                            android:hint="请输入"
+                            android:textColor="@color/cor595757"
+                            android:textColorHint="@color/line"
+                            android:textSize="28px" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--消防维保单位-->
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_firecompany"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/ly_xiaofangname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorWhite"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="消防单位名称"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <EditText
+                            android:id="@+id/et_xiaofangname"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="right"
+                            android:hint="请输入"
+                            android:textColor="@color/cor595757"
+                            android:textColorHint="@color/line"
+                            android:textSize="28px" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--工程一切险要求-->
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_propertyinsurance"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <!--指定保险公司-->
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_baoxiangicd"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/ly_baoxiangicdname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorWhite"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保险公司名称"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <EditText
+                            android:id="@+id/et_baoxiangicdname"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="right"
+                            android:hint="请输入"
+                            android:textColor="@color/cor595757"
+                            android:textColorHint="@color/line"
+                            android:textSize="28px" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--指定垃圾外运公司-->
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_garbagetranscompany"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <!--报审图纸类型-->
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_blueprint"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
                 <!--资质要求-->
                 <com.rxjy.rxdesign.custom.TextGridview
                     android:id="@+id/tgv_qualification"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content" />
 
-                </com.rxjy.rxdesign.custom.TextGridview>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78px"
+                        android:layout_marginTop="20px"
+                        android:background="@color/colorWhite"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="材料防火等级"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:id="@+id/tv_fanghuo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="right"
+                            android:text="请选择"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78px"
+                        android:layout_marginTop="20px"
+                        android:background="@color/colorWhite"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="材料环保等级"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:id="@+id/tv_huanbao"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="right"
+                            android:text="请选择"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorWhite"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="物业要求"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <EditText
+                            android:id="@+id/et_new_wuyeshigongyaoqiu"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="right"
+                            android:hint="请输入"
+                            android:textColor="@color/cor595757"
+                            android:textColorHint="@color/line"
+                            android:textSize="28px" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--隐藏区域-->
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_publicareaprotect"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <!--空调消防维保单位-->
+                <com.rxjy.rxdesign.custom.TextGridview
+                    android:id="@+id/tgv_aircoldfixunit"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
                 <!--图纸审核-->
                 <com.rxjy.rxdesign.custom.TextGridview
                     android:id="@+id/tgv_drawingreview"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                </com.rxjy.rxdesign.custom.TextGridview>
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
 
             </LinearLayout>
         </ScrollView>

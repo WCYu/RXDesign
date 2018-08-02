@@ -46,7 +46,7 @@ import butterknife.ButterKnife;
 import static com.rxjy.rxdesign.utils.Constants.LF_NUM;
 
 /**
- * A simple {@link Fragment} subclass.
+ * 图片
  */
 public class DesDaiSurroundingsFragment extends BaseFragment {
 

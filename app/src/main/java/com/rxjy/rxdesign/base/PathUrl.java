@@ -47,6 +47,7 @@ public class PathUrl {
     public static String JFINFOURL = DES_API_LH + "JTRenShi/APP_RS_GetIntegralPlate";
     public static String QYADDRESSURL = DES_API_LH + "Building/GetBuildingArea";//获取办公地址前段
     public static String QYADDRESSTWOURL = DES_API_LH + "Building/GetBuildingBusiness";//获取办公地址后两段
+    public static String LPLISTURL = DES_API_LH + "Building/GetBuildingInfoByName";
 
     //温特斯红包获取  GetAPPRedPacket   RedBagCount
     public static String WTSREDLISTURL = DES_API_WTS + "LocalTask/GetAPPRedPacket";//获取红包列表

@@ -79,10 +79,11 @@
 
                         <TextView
                             android:id="@+id/tv_qytype"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:gravity="right"
                             android:text="请选择"
                             android:textColor="@color/cor595757"
                             android:textSize="28px" />
@@ -199,10 +200,11 @@
 
                         <TextView
                             android:id="@+id/tv_new_chenglishijian"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:gravity="right"
                             android:text="请选择"
                             android:textColor="@color/cor595757"
                             android:textSize="28px" />
@@ -220,7 +222,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    >
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -330,12 +332,83 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:text="办公地点"
+                                android:text="办公地点/城市"
                                 android:textColor="@color/cor595757"
                                 android:textSize="28px" />
 
                             <TextView
                                 android:id="@+id/tv_bangongdidian"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="right"
+                                android:text="请选择"
+                                android:textColor="@color/cor595757"
+                                android:textSize="28px" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ly_bangongdidianquyu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="78px"
+                            android:layout_marginTop="20px"
+                            android:background="@color/colorWhite"
+                            android:padding="20px">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="办公地点/区域"
+                                android:textColor="@color/cor595757"
+                                android:textSize="28px" />
+
+                            <TextView
+                                android:id="@+id/tv_bangongdidianquyu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:text="请选择"
+                                android:textColor="@color/cor595757"
+                                android:textSize="28px" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ly_bangongdidianshangquan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="78px"
+                            android:layout_marginTop="20px"
+                            android:background="@color/colorWhite"
+                            android:padding="20px">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="办公地点/商圈"
+                                android:textColor="@color/cor595757"
+                                android:textSize="28px" />
+
+                            <TextView
+                                android:id="@+id/tv_bangongdidianshangquan"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"

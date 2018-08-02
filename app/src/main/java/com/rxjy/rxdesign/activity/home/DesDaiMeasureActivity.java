@@ -464,6 +464,7 @@ public class DesDaiMeasureActivity extends BaseActivity {
         map.put("formpars", content);
         map.put("money", mone);
         map.put("valCount", monenum);
+        Log.e("tag_保存量房信息", content);
         OkhttpUtils.doPost(PathUrl.BCLFURL, map, new OkhttpUtils.MyCall() {
             @Override
             public void success(String data) {

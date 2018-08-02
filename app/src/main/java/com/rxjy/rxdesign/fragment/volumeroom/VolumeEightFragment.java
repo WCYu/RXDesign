@@ -157,13 +157,16 @@ public class VolumeEightFragment extends BaseFragment {
         identitylist.add("财务");
 
         attentionlist = new ArrayList<>();
-        attentionlist.add("团队");
-        attentionlist.add("平台");
-        attentionlist.add("细节");
+        attentionlist.add("质量");
+        attentionlist.add("工期");
+        attentionlist.add("效率");
         attentionlist.add("价格");
         attentionlist.add("设计");
-        attentionlist.add("施工工艺");
-        attentionlist.add("为人处事");
+//        attentionlist.add("团队");
+//        attentionlist.add("平台");
+//        attentionlist.add("细节");
+//        attentionlist.add("施工工艺");
+//        attentionlist.add("为人处事");
 
         characterlist = new ArrayList<>();
         characterlist.add("温和");
@@ -177,7 +180,7 @@ public class VolumeEightFragment extends BaseFragment {
 
         zhiwulist = new ArrayList<>();
         zhiwulist.add("请选择");
-        zhiwulist.add("新政");
+        zhiwulist.add("行政");
         zhiwulist.add("副总");
         zhiwulist.add("老板");
         zhiwulist.add("老板助理");

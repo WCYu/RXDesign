@@ -46,15 +46,64 @@
 
                         <TextView
                             android:id="@+id/tv_jihuatouzi"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:gravity="right"
                             android:text="请选择"
                             android:textColor="@color/cor595757"
                             android:textSize="28px" />
 
                     </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ly_jhtouziMoney"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorWhite"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="计划投资金额"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <EditText
+                            android:id="@+id/et_jhtouziMoney"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="right"
+                            android:hint="请输入"
+                            android:inputType="number"
+                            android:textColor="@color/cor595757"
+                            android:textColorHint="@color/line"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20px"
+                            android:text="万元"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -80,10 +129,11 @@
 
                         <TextView
                             android:id="@+id/tv_dingwei"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:gravity="right"
                             android:text="请选择"
                             android:textColor="@color/cor595757"
                             android:textSize="28px" />
@@ -114,10 +164,11 @@
 
                         <TextView
                             android:id="@+id/tv_zhuangxiumudi"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:gravity="right"
                             android:text="请选择"
                             android:textColor="@color/cor595757"
                             android:textSize="28px" />
@@ -153,10 +204,48 @@
 
                         <TextView
                             android:id="@+id/tv_kaigongTime"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:gravity="right"
+                            android:text="请选择"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ly_jtkaigongTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78px"
+                        android:layout_marginTop="20px"
+                        android:background="@color/colorWhite"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="具体开工时间"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:id="@+id/tv_jtkaigongTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="right"
                             android:text="请选择"
                             android:textColor="@color/cor595757"
                             android:textSize="28px" />
@@ -187,10 +276,48 @@
 
                         <TextView
                             android:id="@+id/tv_kaiyeTime"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:gravity="right"
+                            android:text="请选择"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ly_jtkaiyeTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78px"
+                        android:layout_marginTop="20px"
+                        android:background="@color/colorWhite"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="具体开业时间"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:id="@+id/tv_jtkaiyeTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="right"
                             android:text="请选择"
                             android:textColor="@color/cor595757"
                             android:textSize="28px" />
@@ -292,10 +419,48 @@
 
                         <TextView
                             android:id="@+id/tv_kongtiao"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:gravity="right"
+                            android:text="请选择"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ly_kongtiaoType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78px"
+                        android:layout_marginTop="20px"
+                        android:background="@color/colorWhite"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="指定品牌"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:id="@+id/tv_kongtiaoType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="right"
                             android:text="请选择"
                             android:textColor="@color/cor595757"
                             android:textSize="28px" />
@@ -326,10 +491,11 @@
 
                         <TextView
                             android:id="@+id/tv_xiaofang"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:gravity="right"
                             android:text="请选择"
                             android:textColor="@color/cor595757"
                             android:textSize="28px" />
@@ -343,10 +509,91 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
 
+                <LinearLayout
+                    android:id="@+id/ly_fanwei"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorWhite"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="接受范围"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <EditText
+                            android:id="@+id/et_fanwei"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20px"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="right"
+                            android:hint="请输入"
+                            android:textColor="@color/cor595757"
+                            android:textColorHint="@color/line"
+                            android:textSize="28px" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
                 <com.rxjy.rxdesign.custom.TextGridview
                     android:id="@+id/tgv_xuqiu"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/ly_xuqiu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorWhite"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="20px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="具体需求"
+                            android:textColor="@color/cor595757"
+                            android:textSize="28px" />
+
+                        <EditText
+                            android:id="@+id/et_xuqiu"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20px"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="right"
+                            android:hint="请输入"
+                            android:textColor="@color/cor595757"
+                            android:textColorHint="@color/line"
+                            android:textSize="28px" />
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -440,8 +687,7 @@
                     android:layout_height="78px"
                     android:layout_marginTop="20px"
                     android:background="@color/colorWhite"
-                    android:padding="20px"
-                    android:visibility="gone">
+                    android:padding="20px">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -476,11 +722,12 @@
                     <TextView
 
                         android:id="@+id/tv_measure_tenancy_term_start_time"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_toLeftOf="@+id/tv_measure_tenancy_term_time_line"
+                        android:gravity="right"
                         android:text="请选择"
                         android:textColor="@color/cor666"
                         android:textSize="28px" />
