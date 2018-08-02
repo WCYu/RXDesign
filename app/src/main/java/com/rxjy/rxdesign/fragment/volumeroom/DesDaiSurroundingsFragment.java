@@ -101,7 +101,9 @@ public class DesDaiSurroundingsFragment extends BaseFragment {
         Map map = new HashMap();
         map.put("ci_rwdid", ci_rwdId);
         map.put("enumType", s);
-        OkhttpUtils.doGet(getActivity(), PathUrl.GELFIMGURL, map, new OkhttpUtils.MyCall() {
+
+        //PathUrl.GELFIMGURL  "http://app.wenes.cn/api/DWorksDetail/GetAllImages";
+        OkhttpUtils.doGet(getActivity(), "http://app.wenes.cn/api/DWorksDetail/GetAllImages", map, new OkhttpUtils.MyCall() {
             @Override
             public void success(String data) {
                 Log.e("tag_获取用户信息", data);
@@ -110,8 +112,11 @@ public class DesDaiSurroundingsFragment extends BaseFragment {
                     String statusMsg = jsonObject.getString("StatusMsg");
                     int statusCode = jsonObject.getInt("StatusCode");
                     if (statusCode == 0) {
+                        Log.e("tag_标识名", "开始");
                         AllImagesInfo info = JSONUtils.toObject(data, AllImagesInfo.class);
                         List<AllImagesInfo.Album> body = info.getBody();
+                        String catalogIDName = body.get(0).getCatalogIDName();
+                        Log.e("tag_标识名", catalogIDName);
                         setLFHJData(body);
                     } else {
                         ToastUtil.getInstance().toastCentent(statusMsg);

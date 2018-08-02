@@ -6,8 +6,7 @@ import java.util.List;
 /**
  * Created by qindd on 2017/6/21.
  */
-public class AllImagesInfo implements Serializable
-{
+public class AllImagesInfo implements Serializable {
 
     /**
      * StatusCode : 0
@@ -28,38 +27,31 @@ public class AllImagesInfo implements Serializable
 
     private List<Album> Body;
 
-    public int getStatusCode()
-    {
+    public int getStatusCode() {
         return StatusCode;
     }
 
-    public void setStatusCode(int StatusCode)
-    {
+    public void setStatusCode(int StatusCode) {
         this.StatusCode = StatusCode;
     }
 
-    public String getStatusMsg()
-    {
+    public String getStatusMsg() {
         return StatusMsg;
     }
 
-    public void setStatusMsg(String StatusMsg)
-    {
+    public void setStatusMsg(String StatusMsg) {
         this.StatusMsg = StatusMsg;
     }
 
-    public List<Album> getBody()
-    {
+    public List<Album> getBody() {
         return Body;
     }
 
-    public void setBody(List<Album> Body)
-    {
+    public void setBody(List<Album> Body) {
         this.Body = Body;
     }
 
-    public static class Album implements Serializable
-    {
+    public static class Album implements Serializable {
         private int CreatorID;
         private int WorksID;
         private int CatalogID;
@@ -68,108 +60,87 @@ public class AllImagesInfo implements Serializable
         private String CatalogShowType;
         private List<image> childList;
 
-        public String getCatalogShowType()
-        {
+        public String getCatalogShowType() {
             return CatalogShowType;
         }
 
-        public void setCatalogShowType(String catalogShowType)
-        {
+        public void setCatalogShowType(String catalogShowType) {
             CatalogShowType = catalogShowType;
         }
 
-        public int getCreatorID()
-        {
+        public int getCreatorID() {
             return CreatorID;
         }
 
-        public void setCreatorID(int CreatorID)
-        {
+        public void setCreatorID(int CreatorID) {
             this.CreatorID = CreatorID;
         }
 
-        public int getWorksID()
-        {
+        public int getWorksID() {
             return WorksID;
         }
 
-        public void setWorksID(int WorksID)
-        {
+        public void setWorksID(int WorksID) {
             this.WorksID = WorksID;
         }
 
-        public int getCatalogID()
-        {
+        public int getCatalogID() {
             return CatalogID;
         }
 
-        public void setCatalogID(int CatalogID)
-        {
+        public void setCatalogID(int CatalogID) {
             this.CatalogID = CatalogID;
         }
 
-        public String getCatalogIDName()
-        {
+        public String getCatalogIDName() {
             return CatalogIDName;
         }
 
-        public void setCatalogIDName(String CatalogIDName)
-        {
+        public void setCatalogIDName(String CatalogIDName) {
             this.CatalogIDName = CatalogIDName;
         }
 
-        public int getCatalogCount()
-        {
+        public int getCatalogCount() {
             return CatalogCount;
         }
 
-        public void setCatalogCount(int CatalogCount)
-        {
+        public void setCatalogCount(int CatalogCount) {
             this.CatalogCount = CatalogCount;
         }
 
-        public List<image> getChildList()
-        {
+        public List<image> getChildList() {
             return childList;
         }
 
-        public void setChildList(List<image> childList)
-        {
+        public void setChildList(List<image> childList) {
             this.childList = childList;
         }
 
-        public static class image implements Serializable
-        {
+        public static class image implements Serializable {
             private int DetailID;
             private String ImageUrl;
 
-            public image()
-            {
+            public image() {
             }
 
-            public image(int detailID, String imageUrl)
-            {
+            public image(int detailID, String imageUrl) {
                 DetailID = detailID;
                 ImageUrl = imageUrl;
             }
 
-            public int getDetailID()
-            {
+            public int getDetailID() {
                 return DetailID;
             }
 
-            public void setDetailID(int DetailID)
-            {
+            public void setDetailID(int DetailID) {
                 this.DetailID = DetailID;
             }
 
-            public String getImageUrl()
-            {
+            public String getImageUrl() {
                 return ImageUrl;
             }
 
-            public void setImageUrl(String ImageUrl)
-            {
+            public void setImageUrl(String ImageUrl) {
                 this.ImageUrl = ImageUrl;
             }
         }
